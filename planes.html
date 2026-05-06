@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Pacioli · Diagnóstico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #ede9e1;
+  --bg-card:   #f5f2eb;
+  --bg-card2:  #eae6dd;
+  --border:    rgba(0,0,0,0.10);
+  --border-strong: rgba(0,0,0,0.18);
+  --gold:      #9a7b2e;
+  --gold-l:    rgba(154,123,46,0.15);
+  --ink:       #1c1b18;
+  --ink2:      #3d3b34;
+  --ink3:      #5a5850;
+  --ink4:      #8a8880;
+  --featured:  #2c2b27;
+  --radius:    10px;
+  --radius-sm: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  padding: 2rem 1.5rem 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 15px;
+}
+
+/* ── LOGO ── */
+.logo-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid var(--border-strong);
+}
+.logo-mark svg {
+  width: 34px;
+  height: 30px;
+  display: block;
+}
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 11.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.logo-text em {
+  display: block;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-transform: none;
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 1rem;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.lead {
+  font-size: 15px;
+  color: var(--ink3);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  max-width: 560px;
+  font-weight: 400;
+}
+hr.sep {
+  border: none;
+  border-top: 0.5px solid var(--border-strong);
+  margin: 2.75rem 0;
+}
+
+/* ─────────────────────────────── */
+/* CONDITIONS                      */
+/* ─────────────────────────────── */
+.cond-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+.cond-card {
+  padding: 1.1rem 1.2rem;
+  background: var(--bg-card2);
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.cond-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 3px 14px rgba(154,123,46,0.12);
+  transform: translateY(-1px);
+}
+.cond-card:hover .cond-hint { opacity: 1; }
+.cond-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.cond-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.cond-body {
+  font-size: 13.5px;
+  color: var(--ink3);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────── */
+/* PLANS                           */
+/* ─────────────────────────────── */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.plan-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.22s ease,
+              border-color 0.2s ease;
+  overflow: hidden;
+}
+
+/* shimmer pseudo-element */
+.plan-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(154,123,46,0.07) 60%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(154,123,46,0.18);
+  border-color: var(--gold);
+}
+.plan-card:hover::before { opacity: 1; }
+.plan-card:active { transform: translateY(-2px) scale(0.99); }
+
+.plan-card.featured {
+  background: var(--featured);
+  border: 1.5px solid #4a4840;
+}
+.plan-card.featured:hover {
+  border-color: var(--gold);
+  box-shadow: 0 14px 38px rgba(154,123,46,0.28);
+}
+
+/* click ripple */
+.plan-card .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(154,123,46,0.18);
+  transform: scale(0);
+  animation: ripple-out 0.5s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* "Clic para más info" label on hover */
+.plan-cta-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.plan-card:hover .plan-cta-hint { opacity: 1; }
+
+.plan-badge {
+  position: absolute;
+  top: -11px;
+  left: 14px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 3px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.plan-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.plan-card.featured .plan-name { color: #f0ece3; }
+
+.plan-desc {
+  font-size: 13.5px;
+  color: var(--ink3);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  font-style: italic;
+  font-weight: 400;
+}
+.plan-card.featured .plan-desc { color: rgba(240,236,227,0.6); }
+
+.plan-rule {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin-bottom: 13px;
+}
+.plan-card.featured .plan-rule { border-color: rgba(255,255,255,0.1); }
+
+.plan-includes {
+  font-size: 13.5px;
+  color: var(--ink3);
+  line-height: 1.9;
+  font-weight: 400;
+  padding-bottom: 1.4rem; /* space for hint */
+}
+.plan-card.featured .plan-includes { color: rgba(240,236,227,0.65); }
+.plan-includes strong { font-weight: 600; color: var(--ink2); }
+.plan-card.featured .plan-includes strong { color: #f0ece3; }
+
+.plan-note {
+  font-size: 12px;
+  color: var(--ink4);
+  line-height: 1.65;
+  margin-top: 1.25rem;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────── */
+/* BENEFITS GRID                   */
+/* ─────────────────────────────── */
+.ben-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+.ben-card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.1rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+}
+.ben-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 3px 14px rgba(154,123,46,0.13);
+  transform: translateY(-1px);
+}
+.ben-num {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: block;
+}
+.ben-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.35;
+}
+.ben-sub {
+  font-size: 13px;
+  color: var(--ink3);
+  line-height: 1.55;
+  font-weight: 400;
+}
+.ben-arrow {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 12px;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.ben-card:hover .ben-arrow { opacity: 1; }
+.ben-wide { grid-column: span 2; }
+.ben-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 9px;
+}
+.ben-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border: 0.5px solid rgba(154,123,46,0.4);
+  color: var(--gold);
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════ */
+/* MODAL BASE                                  */
+/* ═══════════════════════════════════════════ */
+.modal-wrap {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28,27,24,0.55);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(2px);
+}
+.modal-wrap.open { display: flex; }
+
+.modal-inner {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  max-width: 440px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  animation: modal-in 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes modal-in {
+  from { opacity:0; transform: scale(0.93) translateY(12px); }
+  to   { opacity:1; transform: scale(1) translateY(0); }
+}
+
+.modal-head {
+  background: var(--featured);
+  padding: 1.5rem 2rem 1.25rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.modal-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #f0ece3;
+  line-height: 1.2;
+}
+.modal-sub {
+  font-size: 12.5px;
+  color: rgba(240,236,227,0.5);
+  margin-top: 4px;
+  font-style: italic;
+}
+.modal-close {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+}
+.modal-close:hover { opacity: 1; }
+.modal-body { padding: 1.5rem 2rem; }
+.modal-desc {
+  font-size: 14px;
+  color: var(--ink3);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+.modal-items-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+.modal-item {
+  font-size: 13.5px;
+  color: var(--ink3);
+  padding: 8px 0;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  gap: 9px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+.modal-item::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+.modal-item:last-child { border-bottom: none; }
+
+/* ═══════════════════════════════════════════ */
+/* PLAN CONTACT MODAL                          */
+/* ═══════════════════════════════════════════ */
+.plan-modal-inner {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  animation: modal-in 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  overflow: hidden;
+}
+
+.plan-modal-head {
+  background: var(--featured);
+  padding: 1.6rem 2rem 1.3rem;
+}
+.plan-modal-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 5px;
+}
+.plan-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: #f0ece3;
+  line-height: 1.3;
+}
+.plan-modal-title span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.plan-modal-body {
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* phone input row */
+.pm-input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+.pm-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.pm-input:focus { border-color: var(--gold); }
+
+/* divider */
+.pm-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink4);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pm-divider::before, .pm-divider::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--border-strong);
+}
+
+/* WA button */
+.pm-btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0.85rem 1.2rem;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.15s;
+}
+.pm-btn-wa:hover { background: #1ebe5a; transform: translateY(-1px); }
+.pm-btn-wa svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* phone row */
+.pm-phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card2);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  border: 0.5px solid var(--border);
+}
+.pm-phone-icon { font-size: 16px; }
+.pm-phone-info { flex: 1; }
+.pm-phone-num {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.pm-phone-hours {
+  font-size: 11.5px;
+  color: var(--ink3);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+/* send button */
+.pm-btn-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.85rem 1.2rem;
+  background: var(--featured);
+  color: #f0ece3;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  width: 100%;
+}
+.pm-btn-send:hover { background: #1a1a16; transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════ */
+/* CONDITION DETAIL MODAL                      */
+/* ═══════════════════════════════════════════ */
+.cond-modal-inner {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  animation: modal-in 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  overflow: hidden;
+}
+.cond-modal-head {
+  background: var(--featured);
+  padding: 1.4rem 2rem 1.1rem;
+}
+.cond-modal-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 5px;
+}
+.cond-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #f0ece3;
+}
+.cond-modal-body {
+  padding: 1.4rem 2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.cond-modal-desc {
+  font-size: 14px;
+  color: var(--ink3);
+  line-height: 1.75;
+}
+.cond-modal-points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cond-modal-point {
+  font-size: 13.5px;
+  color: var(--ink3);
+  display: flex;
+  gap: 8px;
+  line-height: 1.55;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.cond-modal-point:last-child { border-bottom: none; }
+.cond-modal-point::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- ── LOGO ── -->
+<div class="logo-bar">
+  <div class="logo-mark">
+    <svg viewBox="0 0 141.28 97.97" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="none" stroke="#1A1A18" stroke-width="3.48697" stroke-linecap="round" stroke-linejoin="round"
+            d="M 13.875,83.828 L 35.422,14.109 L 70.281,83.828 L 105.145,14.109 L 126.688,83.828"/>
+      <circle cx="13.875" cy="83.828" r="8.92" fill="#1A1A18"/>
+      <circle cx="35.422" cy="14.109" r="8.92" fill="#1A1A18"/>
+      <circle cx="70.281" cy="83.828" r="8.92" fill="#1A1A18"/>
+      <circle cx="105.145" cy="14.109" r="8.92" fill="#1A1A18"/>
+      <circle cx="126.688" cy="83.828" r="8.92" fill="#1A1A18"/>
+    </svg>
+  </div>
+  <div class="logo-text">
+    Método Pacioli
+    <em>Precisión con propósito</em>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 1. CONDICIONES                  -->
+<!-- ═══════════════════════════════ -->
+<div class="eyebrow">Condiciones esenciales · Cómo trabajamos</div>
+<h2>Antes de comenzar</h2>
+<p class="lead">Para que la relación funcione bien desde el primer día. Haz clic en cada condición para entenderla mejor.</p>
+
+<div class="cond-grid">
+
+  <div class="cond-card" onclick="openCond('digital')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Modelo 100% digital</p>
+    <p class="cond-body">Toda la operación se gestiona digitalmente. Sin documentación física.</p>
+  </div>
+
+  <div class="cond-card" onclick="openCond('pago')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Pago anticipado mensual</p>
+    <p class="cond-body">Los servicios regulares se abonan de manera adelantada.</p>
+  </div>
+
+  <div class="cond-card" onclick="openCond('info')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Información completa y oportuna</p>
+    <p class="cond-body">Método Pacioli no asume responsabilidad por información incompleta o tardía.</p>
+  </div>
+
+  <div class="cond-card" onclick="openCond('alcance')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Alcance del servicio</p>
+    <p class="cond-body">El servicio es contable, tributario y laboral. No incluye asesoría legal.</p>
+  </div>
+
+  <div class="cond-card" onclick="openCond('adicional')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Servicios adicionales</p>
+    <p class="cond-body">Servicios de alta complejidad se cotizan por separado antes de su inicio.</p>
+  </div>
+
+  <div class="cond-card" onclick="openCond('confidencial')">
+    <span class="cond-hint">+ detalle</span>
+    <p class="cond-title">Confidencialidad</p>
+    <p class="cond-body">Tu información se trata con absoluta reserva y compliance profesional.</p>
+  </div>
+
+</div>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════ -->
+<!-- 2. PLANES                       -->
+<!-- ═══════════════════════════════ -->
+<div class="eyebrow">Planes de servicio · Contable · Tributario · Laboral</div>
+<h2>Elige tu plan</h2>
+<p class="lead">Servicio integral por defecto. Si necesitas un módulo específico, lo conversamos en la consultoría inicial.</p>
+
+<div class="plan-grid">
+
+  <div class="plan-card" onclick="openPlan('Esencial', event)">
+    <span class="plan-cta-hint">Clic para más info →</span>
+    <p class="plan-name">Esencial</p>
+    <p class="plan-desc">"Tu operación financiera, en orden y al día. Nos encargamos de lo técnico para que tú te concentres en lo tuyo."</p>
+    <hr class="plan-rule">
+    <p class="plan-includes">
+      Contabilidad completa · Declaración de Renta e IGV · Libros electrónicos SIRE · Libro Diario Simplificado · Planilla esencial · Estados financieros mensuales con notas · Reunión mensual · <strong>Consultas especializadas (2 h)</strong>
+    </p>
+  </div>
+
+  <div class="plan-card featured" onclick="openPlan('Estratégico', event)">
+    <span class="plan-badge">Más elegido</span>
+    <span class="plan-cta-hint">Clic para más info →</span>
+    <p class="plan-name">Estratégico</p>
+    <p class="plan-desc">"Cumplimiento más análisis. Transformamos tus números en información que impulsa decisiones reales."</p>
+    <hr class="plan-rule">
+    <p class="plan-includes">
+      Todo Esencial · Declaraciones tributarias ampliadas · EEFF completos · Informe estratégico · <strong>Libro diario y mayor</strong> · <strong>Consultas especializadas (+2 h)</strong> · <strong>Beneficios exclusivos del plan</strong>
+    </p>
+  </div>
+
+  <div class="plan-card" onclick="openPlan('Premium', event)">
+    <span class="plan-cta-hint">Clic para más info →</span>
+    <p class="plan-name">Premium</p>
+    <p class="plan-desc">"Socios estratégicos en el sentido más completo. Planificación, inteligencia financiera continua y visión de largo plazo."</p>
+    <hr class="plan-rule">
+    <p class="plan-includes">
+      Todo Estratégico · <strong>Libros completos</strong> · Planificación tributaria inicial · Dashboard financiero gratuito anual · KPIs periódicos · Cobertura de fiscalizaciones · <strong>20% dto. en servicios especializados</strong> · <strong>Beneficios exclusivos Premium</strong> · <strong>Reuniones y consultas (+2 h)</strong>
+    </p>
+  </div>
+
+</div>
+
+<p class="plan-note">Los tres planes incluyen contabilidad, tributación y gestión laboral. Módulos individuales disponibles bajo consulta. Cotización personalizada al finalizar el diagnóstico.</p>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════ -->
+<!-- 3. BENEFICIOS                   -->
+<!-- ═══════════════════════════════ -->
+<div class="eyebrow">Ventajas exclusivas · Todos los clientes activos</div>
+<h2>Lo que obtienes como cliente</h2>
+<p class="lead">Más allá del servicio técnico, cada cliente activo accede a un ecosistema pensado para acompañar su crecimiento. Haz clic en cada ventaja para ver el detalle.</p>
+
+<div class="ben-grid">
+  <div class="ben-card" onclick="openM('doc')"><span class="ben-arrow">↗</span><span class="ben-num">01</span><p class="ben-title">Archivo digital organizado</p><p class="ben-sub">Documentación en la nube, segura y trazable siempre.</p></div>
+  <div class="ben-card" onclick="openM('reunion')"><span class="ben-arrow">↗</span><span class="ben-num">02</span><p class="ben-title">Reuniones mensuales de análisis</p><p class="ben-sub">Tus números interpretados, no solo entregados.</p></div>
+  <div class="ben-card" onclick="openM('cap')"><span class="ben-arrow">↗</span><span class="ben-num">03</span><p class="ben-title">Capacitaciones incluidas</p><p class="ben-sub">Formación financiera para ti y tu equipo.</p></div>
+  <div class="ben-card" onclick="openM('prev')"><span class="ben-arrow">↗</span><span class="ben-num">04</span><p class="ben-title">Informe de contingencias</p><p class="ben-sub">Riesgos tributarios y laborales identificados antes de que ocurran.</p></div>
+  <div class="ben-card" onclick="openM('dash')"><span class="ben-arrow">↗</span><span class="ben-num">05</span><p class="ben-title">Dashboard financiero</p><p class="ben-sub">Tu posición financiera real, visualizada y accionable.</p></div>
+  <div class="ben-card" onclick="openM('news')"><span class="ben-arrow">↗</span><span class="ben-num">06</span><p class="ben-title">Newsletter técnico mensual</p><p class="ben-sub">Novedades normativas en lenguaje claro, sin sorpresas.</p></div>
+  <div class="ben-card" onclick="openM('digital')"><span class="ben-arrow">↗</span><span class="ben-num">07</span><p class="ben-title">Modelo 100% digital</p><p class="ben-sub">Sin papel, sin desplazamientos. Todo en plataformas seguras.</p></div>
+  <div class="ben-card" onclick="openM('alianza')"><span class="ben-arrow">↗</span><span class="ben-num">08</span><p class="ben-title">Alianzas estratégicas</p><p class="ben-sub">Tarifas preferenciales en facturación electrónica y más.</p></div>
+  <div class="ben-card ben-wide" onclick="openM('comunidad')">
+    <span class="ben-arrow">↗</span><span class="ben-num">09</span>
+    <p class="ben-title">Red Método Pacioli</p>
+    <p class="ben-sub">Comunidad activa de empresarios y emprendedores.</p>
+    <div class="ben-tags">
+      <span class="ben-tag">Networking</span><span class="ben-tag">Cursos gratuitos</span><span class="ben-tag">Sorteos</span><span class="ben-tag">Descuentos</span><span class="ben-tag">Pool proveedores</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BENEFIT MODAL                                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="modal-wrap" id="ben-modal" onclick="handleBenClick(event)">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeM()">✕</button>
+    <div class="modal-head">
+      <span class="modal-label" id="m-label"></span>
+      <p class="modal-title" id="m-title"></p>
+      <p class="modal-sub" id="m-sub"></p>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="m-desc"></p>
+      <span class="modal-items-label">Lo que incluye</span>
+      <div id="m-items"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PLAN CONTACT MODAL                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="modal-wrap" id="plan-modal" onclick="handlePlanClick(event)">
+  <div class="plan-modal-inner">
+    <button class="modal-close" onclick="closePlan()">✕</button>
+    <div class="plan-modal-head">
+      <span class="plan-modal-eyebrow">Has seleccionado</span>
+      <p class="plan-modal-title">a. Estoy interesado en el plan <span id="pm-plan-name">—</span></p>
+    </div>
+    <div class="plan-modal-body">
+
+      <!-- Phone input -->
+      <div>
+        <label class="pm-input-label" for="pm-phone">b. Deja tu número telefónico</label>
+        <input class="pm-input" id="pm-phone" type="tel" placeholder="Ej: 987 654 321" maxlength="20">
+      </div>
+
+      <!-- Send button -->
+      <button class="pm-btn-send" onclick="sendWA()">
+        Enviar mi interés →
+      </button>
+
+      <div class="pm-divider">o contáctanos directamente</div>
+
+      <!-- WhatsApp -->
+      <a class="pm-btn-wa" id="pm-wa-link" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Escríbenos por WhatsApp · Atención 24/7
+      </a>
+
+      <!-- Phone -->
+      <div class="pm-phone">
+        <span class="pm-phone-icon">📞</span>
+        <div class="pm-phone-info">
+          <p class="pm-phone-num">982 505 752</p>
+          <p class="pm-phone-hours">Llámanos para una conexión más rápida<br>Lun–Vie 9:00 am – 5:00 pm · Sáb 9:00 am – 1:00 pm</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CONDITION DETAIL MODAL                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="modal-wrap" id="cond-modal" onclick="handleCondClick(event)">
+  <div class="cond-modal-inner">
+    <button class="modal-close" onclick="closeCond()">✕</button>
+    <div class="cond-modal-head">
+      <span class="cond-modal-label" id="cm-label">Condición</span>
+      <p class="cond-modal-title" id="cm-title"></p>
+    </div>
+    <div class="cond-modal-body">
+      <p class="cond-modal-desc" id="cm-desc"></p>
+      <div class="cond-modal-points" id="cm-points"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════ BENEFIT DATA ══════════ */
+const BD = {
+  doc:      { label:'01 · Gestión Documental', title:'Archivo Digital Organizado', sub:'Trazabilidad permanente de toda tu documentación', desc:'Tu documentación contable disponible cuando la necesites, sin carpetas físicas ni archivos perdidos. Un modelo que protege tu información y te prepara ante cualquier fiscalización.', items:['Historial documental completo respaldado en la nube','Envío mensual estructurado por correo corporativo','Acceso permanente con trazabilidad de cada operación','Plataformas digitales con encriptación y seguridad','Documentación lista ante cualquier fiscalización o auditoría'] },
+  reunion:  { label:'02 · Acompañamiento', title:'Reuniones Mensuales de Análisis', sub:'Tu información interpretada, no solo entregada', desc:'Cada reunión es una sesión de trabajo orientada a decisiones reales. Analizamos contigo, identificamos alertas y definimos próximos pasos.', items:['Revisión de resultados con interpretación clara','Identificación de alertas antes de que se materialicen','Planificación alineada a tus objetivos','Espacio para consultas contables, tributarias y laborales','Entrega de informe ejecutivo de cada sesión'] },
+  cap:      { label:'03 · Cultura Financiera', title:'Capacitaciones Incluidas', sub:'Porque una empresa que entiende sus números decide mejor', desc:'La formación es parte del servicio, no un extra. Sesiones para tu equipo administrativo y gerencial, adaptadas a tu sector y realidad.', items:['Sesiones para equipo administrativo y gerencial','Contenido adaptado a tu sector','Materiales incluidos en cada capacitación','Temas: EE.FF., obligaciones tributarias, gestión de costos','Modalidad virtual, sin interrumpir tu operación'] },
+  prev:     { label:'04 · Prevención', title:'Informe de Contingencias', sub:'Mejor antes que después', desc:'Identificamos exposiciones en tus declaraciones y registros antes de que lo hagan las entidades públicas competentes. Protegemos tu patrimonio y tu operación con anticipación.', items:['Análisis preventivo tributario y laboral periódico','Identificación de exposiciones en declaraciones y registros','Recomendaciones concretas y accionables','Revisión de cambios normativos que puedan impactarte','Enfocado en proteger tu patrimonio y continuidad operativa'] },
+  dash:     { label:'05 · Tecnología', title:'Dashboard Financiero', sub:'Tu realidad financiera visualizada, no solo reportada', desc:'Panel analítico con los indicadores clave de tu negocio, actualizado y accionable. Sin hojas de cálculo difíciles de leer. Condiciones preferenciales para clientes activos.', items:['KPIs clave de tu negocio actualizados','Estado de resultados, flujo de caja y posición financiera','Visualización clara sin conocimientos técnicos','Desarrollado con especialistas en tecnología','Actualización alineada a tu cierre contable'] },
+  news:     { label:'06 · Actualización', title:'Newsletter Técnico Mensual', sub:'Lo que no sabes sí puede afectarte', desc:'El entorno tributario cambia constantemente. Te mantenemos informado para que ningún cambio normativo te tome por sorpresa, en lenguaje claro.', items:['Novedades de entidades reguladoras y autoridades públicas','Análisis de impacto para pequeñas y medianas empresas','Oportunidades tributarias y alertas del mes','Redactado en lenguaje claro, sin tecnicismos','Exclusivo para clientes activos de Método Pacioli'] },
+  digital:  { label:'07 · Modelo Digital', title:'Sin Papel. Sin Desplazamientos.', sub:'Eficiencia, sostenibilidad y compliance', desc:'Todo ocurre en plataformas digitales seguras. Sin reuniones innecesarias, sin trámites físicos. Un modelo alineado con la forma en que trabajan los negocios modernos.', items:['Gestión contable y tributaria 100% en la nube','Comunicación formal respaldada vía correo corporativo','Trazabilidad de cada operación y aprobación','Alineado con principios de sostenibilidad y compliance','Todo documentado, organizado y auditable'] },
+  alianza:  { label:'08 · Alianzas', title:'Tarifas Preferenciales en Ecosistema', sub:'Un ecosistema de aliados para tu crecimiento', desc:'Como cliente activo accedes a condiciones exclusivas en servicios complementarios gestionados a través de nuestros socios tecnológicos y financieros.', items:['Facturación electrónica con tarifas preferenciales','Herramientas de gestión empresarial con descuento','Socios seleccionados por calidad y confiabilidad','Beneficios ampliados según plan contratado','Condiciones no disponibles al público general'] },
+  comunidad:{ label:'09 · Comunidad', title:'Red Método Pacioli', sub:'Construir empresa no debería ser un camino solitario', desc:'Ser cliente de Método Pacioli te conecta con un ecosistema de negocios activos. Una comunidad curada, no un grupo masivo: calidad sobre cantidad.', items:['Pool de proveedores y clientes verificados para recomendación mutua','Eventos físicos de networking con empresarios y emprendedores','Acceso a cursos gratuitos sobre finanzas, gestión y liderazgo','Sorteos de libros de negocios, finanzas y estrategia','Descuentos exclusivos en servicios y productos seleccionados'] }
+};
+
+/* ══════════ CONDITION DATA ══════════ */
+const CD = {
+  digital: {
+    label: 'Cómo operamos',
+    title: 'Modelo 100% digital',
+    desc: 'Operamos íntegramente en entornos digitales. No gestionamos documentos físicos, no recibimos visitas presenciales para trámites, y toda comunicación formal debe realizarse por los canales designados.',
+    points: [
+      'Toda la documentación contable se gestiona en plataformas digitales seguras y trazables.',
+      'La comunicación formal con Método Pacioli se realiza exclusivamente vía correo corporativo. Los mensajes por WhatsApp o redes sociales no constituyen instrucción formal.',
+      'Tus documentos están disponibles en la nube en todo momento — sin depender de nuestra oficina ni de horarios físicos.',
+      'Este modelo nos permite reducir tiempos, eliminar errores de transcripción y mantener un historial auditado de cada operación.'
+    ]
+  },
+  pago: {
+    label: 'Facturación',
+    title: 'Pago anticipado mensual',
+    desc: 'Nuestros honorarios se abonan al inicio de cada período. Esto nos permite planificar el trabajo de tu empresa con la dedicación que merece, sin interrupciones por gestiones administrativas.',
+    points: [
+      'El servicio mensual se factura y debe abonarse en los primeros días del mes correspondiente.',
+      'La Declaración Jurada Anual (DDJJ) se factura por separado en el mes de marzo, dado que implica trabajo adicional y específico.',
+      'Ante mora en el pago, Método Pacioli puede suspender la entrega de reportes o declaraciones hasta regularizar la situación.',
+      'Se emite comprobante de pago por cada transacción — cumplimos con todas las obligaciones tributarias propias.'
+    ]
+  },
+  info: {
+    label: 'Tu responsabilidad',
+    title: 'Información completa y oportuna',
+    desc: 'La calidad de nuestro trabajo depende directamente de la información que recibimos. No podemos construir sobre datos incompletos, ni responder por consecuencias derivadas de información que no nos fue entregada.',
+    points: [
+      'Toda la documentación del período (facturas, boletas, planillas, extractos bancarios) debe entregarse antes del cierre establecido.',
+      'Método Pacioli no asume responsabilidad por multas, moras o contingencias generadas por información entregada fuera de plazo o con errores.',
+      'Si no contamos con información completa al momento de declarar, procederemos con lo disponible e informaremos las diferencias — la rectificatoria tendrá costo adicional.',
+      'Te enviaremos recordatorios periódicos sobre los documentos pendientes para facilitar el cumplimiento.'
+    ]
+  },
+  alcance: {
+    label: 'Qué incluye el servicio',
+    title: 'Alcance del servicio',
+    desc: 'Somos una firma contable, tributaria y laboral. Nuestro rol es mantener tu empresa en orden frente a las obligaciones correspondientes. Hay áreas que, por su naturaleza, requieren otros profesionales.',
+    points: [
+      'El servicio incluye contabilidad completa, gestión tributaria y administración de planilla.',
+      'No prestamos asesoría legal ni representación judicial. Para litigios o contratos complejos, te recomendaremos estudios de abogados de confianza.',
+      'Las fiscalizaciones de períodos anteriores a la contratación del servicio se cotizan aparte, pues implican revisión de información que no gestionamos.',
+      'Cualquier ampliación del alcance (nuevas unidades de negocio, estructuras societarias adicionales, etc.) se coordinará y cotizará previamente.'
+    ]
+  },
+  adicional: {
+    label: 'Servicios fuera del plan',
+    title: 'Servicios adicionales',
+    desc: 'El plan contratado cubre las obligaciones regulares de tu empresa. Cuando surgen necesidades especiales de mayor complejidad, trabajamos con un proceso claro de cotización y aprobación previa.',
+    points: [
+      'Servicios como reorganizaciones societarias, due diligence, valorización de empresas o reestructuración de deuda no están incluidos en los planes regulares.',
+      'Antes de iniciar cualquier trabajo adicional, emitimos una propuesta con alcance, plazo y costo. Solo comenzamos con tu aprobación expresa.',
+      'Los servicios adicionales se facturan por separado del servicio mensual, sin afectar la continuidad del plan.',
+      'En muchos casos, anticipamos estas necesidades en nuestras reuniones mensuales — parte de nuestro rol es ayudarte a planificar con anticipación.'
+    ]
+  },
+  confidencial: {
+    label: 'Privacidad y reserva',
+    title: 'Confidencialidad',
+    desc: 'La información de tu empresa es tratada con el más alto estándar de reserva profesional. Nunca compartimos datos de clientes con terceros, y nuestros procesos internos están diseñados para proteger tu privacidad.',
+    points: [
+      'Todo el equipo de Método Pacioli está sujeto a acuerdos de confidencialidad internos.',
+      'No compartimos información de clientes con ningún tercero, salvo requerimiento expreso de una autoridad competente con orden formal.',
+      'Tus datos financieros, estratégicos y operativos permanecen exclusivamente en los sistemas internos de Método Pacioli.',
+      'Al finalizar la relación contractual, puedes solicitar la devolución o eliminación de tu información según lo acordado.'
+    ]
+  }
+};
+
+/* ══════════ BENEFIT MODAL ══════════ */
+function openM(k) {
+  const d = BD[k]; if (!d) return;
+  document.getElementById('m-label').textContent = d.label;
+  document.getElementById('m-title').textContent = d.title;
+  document.getElementById('m-sub').textContent = d.sub;
+  document.getElementById('m-desc').textContent = d.desc;
+  document.getElementById('m-items').innerHTML = d.items.map(i => `<div class="modal-item">${i}</div>`).join('');
+  document.getElementById('ben-modal').classList.add('open');
+}
+function closeM() { document.getElementById('ben-modal').classList.remove('open'); }
+function handleBenClick(e) { if (e.target === document.getElementById('ben-modal')) closeM(); }
+
+/* ══════════ PLAN MODAL ══════════ */
+let currentPlan = '';
+function openPlan(planName, e) {
+  // ripple effect
+  const card = e.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const rip = document.createElement('span');
+  rip.classList.add('ripple');
+  const size = Math.max(rect.width, rect.height);
+  rip.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+  card.appendChild(rip);
+  setTimeout(() => rip.remove(), 600);
+
+  currentPlan = planName;
+  document.getElementById('pm-plan-name').textContent = planName;
+  document.getElementById('pm-phone').value = '';
+
+  // Pre-build WA link (no phone yet)
+  updateWALink('');
+
+  document.getElementById('plan-modal').classList.add('open');
+}
+function closePlan() { document.getElementById('plan-modal').classList.remove('open'); }
+function handlePlanClick(e) { if (e.target === document.getElementById('plan-modal')) closePlan(); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pm-phone').addEventListener('input', function() {
+    updateWALink(this.value.trim());
+  });
+});
+
+function updateWALink(phone) {
+  const msg = `Hola, estoy interesado en el plan *${currentPlan}* de Método Pacioli.` +
+    (phone ? ` Mi número de contacto es ${phone}.` : '');
+  document.getElementById('pm-wa-link').href =
+    `https://wa.me/51982505752?text=${encodeURIComponent(msg)}`;
+}
+
+function sendWA() {
+  const phone = document.getElementById('pm-phone').value.trim();
+  updateWALink(phone);
+  window.open(document.getElementById('pm-wa-link').href, '_blank');
+}
+
+/* ══════════ CONDITION MODAL ══════════ */
+function openCond(k) {
+  const d = CD[k]; if (!d) return;
+  document.getElementById('cm-label').textContent = d.label;
+  document.getElementById('cm-title').textContent = d.title;
+  document.getElementById('cm-desc').textContent = d.desc;
+  document.getElementById('cm-points').innerHTML = d.points.map(p => `<div class="cond-modal-point">${p}</div>`).join('');
+  document.getElementById('cond-modal').classList.add('open');
+}
+function closeCond() { document.getElementById('cond-modal').classList.remove('open'); }
+function handleCondClick(e) { if (e.target === document.getElementById('cond-modal')) closeCond(); }
+
+/* ══════════ CLOSE ON ESC ══════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeM(); closePlan(); closeCond(); }
+});
+</script>
+
+</body>
+</html>
