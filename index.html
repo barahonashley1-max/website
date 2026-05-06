@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Método Pacioli — Firma estratégica de contabilidad, finanzas y tributación. Precisión con propósito. Lima, Perú.">
-<meta name="keywords" content="contabilidad, tributación, finanzas, Lima, Perú, SUNAT, empresa, emprendedor">
+<meta name="keywords" content="contabilidad, tributación, finanzas, Lima, Perú, entidades reguladoras, empresa, emprendedor">
 <meta property="og:title" content="Método Pacioli — Precisión con Propósito">
 <meta property="og:description" content="Transformamos información financiera en ventaja competitiva. Contabilidad estratégica para empresas en Lima.">
 <meta property="og:type" content="website">
@@ -90,6 +90,97 @@ ul { list-style: none; }
 .gold-rule--center { margin-left: auto; margin-right: auto; }
 .gold-rule--right { margin-left: auto; }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   VENTAJAS EXCLUSIVAS
+   ═══════════════════════════════════════════════════════════════════════ */
+.ventajas {
+  padding: 7rem 0;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.ventajas::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(184,168,122,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,168,122,.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.ventajas__header { text-align: center; margin-bottom: 4rem; }
+.ventajas__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5px;
+}
+.vnt-card {
+  background: var(--carbon);
+  padding: 2.5rem 2rem 3rem;
+  position: relative; overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(184,168,122,.06);
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.vnt-card:hover {
+  background: rgba(58,56,48,.95);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.36);
+  z-index: 2;
+}
+.vnt-card--wide {
+  grid-column: span 2;
+}
+.vnt-card__accent {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s var(--ease-out);
+}
+.vnt-card:hover .vnt-card__accent { transform: scaleX(1); }
+.vnt-card__num {
+  font-family: var(--display); font-size: .46rem;
+  letter-spacing: .28em; color: var(--gold); opacity: .45;
+  margin-bottom: .8rem; display: block;
+}
+.vnt-card__icon { width: 40px; height: 40px; margin-bottom: 1.2rem; opacity: .8; }
+.vnt-card__title {
+  font-family: var(--display); font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--parchment); margin-bottom: .6rem;
+}
+.vnt-card__desc {
+  font-family: var(--serif); font-size: .86rem;
+  color: rgba(245,240,232,.45); line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.vnt-card__cta {
+  font-family: var(--display); font-size: .46rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); opacity: 0;
+  transition: opacity .25s;
+  display: block;
+}
+.vnt-card:hover .vnt-card__cta { opacity: 1; }
+.vnt-card--wide .vnt-card__wide-content {
+  display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
+}
+.vnt-card--wide .vnt-card__wide-content > div:first-child { flex: 1; min-width: 200px; }
+.vnt-card__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+.vnt-tag {
+  font-family: var(--display); font-size: .44rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .28rem .7rem;
+  border: 1px solid rgba(184,168,122,.25); color: var(--gold);
+}
+@media (max-width: 900px) {
+  .ventajas__grid { grid-template-columns: repeat(2, 1fr); }
+  .vnt-card--wide { grid-column: span 2; }
+}
+@media (max-width: 540px) {
+  .ventajas__grid { grid-template-columns: 1fr; }
+  .vnt-card--wide { grid-column: span 1; }
+}
+
 /* ─── SCROLL REVEAL ─── */
 .reveal {
   opacity: 0;
@@ -119,7 +210,7 @@ ul { list-style: none; }
 }
 .nav.nav--scrolled { box-shadow: 0 2px 32px rgba(0,0,0,.07); }
 .nav__inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem;
+  max-width: 100%; margin: 0 auto; padding: 0 3.5rem;
   width: 100%;
   display: flex; align-items: center; justify-content: space-between;
 }
@@ -143,17 +234,18 @@ ul { list-style: none; }
   text-transform: none;
 }
 .nav__links {
-  display: flex; align-items: center; gap: 1.6rem;
+  display: flex; align-items: center; gap: 2rem;
 }
 .nav__links a {
   font-family: var(--display);
-  font-size: .52rem;
+  font-size: .62rem;
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--silver);
   transition: color .25s;
   position: relative;
   padding-bottom: 2px;
+  white-space: nowrap;
 }
 .nav__links a::after {
   content: '';
@@ -168,10 +260,11 @@ ul { list-style: none; }
 .nav__links a.active::after { transform: scaleX(1); }
 .nav__cta {
   font-family: var(--display);
-  font-size: .52rem;
+  font-size: .62rem;
   letter-spacing: .18em;
   text-transform: uppercase;
-  padding: .55rem 1.2rem;
+  padding: .55rem 1.4rem;
+  white-space: nowrap;
   background: var(--ink);
   color: var(--parchment);
   border: 1px solid var(--ink);
@@ -245,15 +338,20 @@ ul { list-style: none; }
   color: var(--ink);
   line-height: .94;
   margin-bottom: 1.6rem;
+  -webkit-text-stroke: 0.7px var(--ink);
+  text-shadow: 0.5px 0 0 var(--ink), -0.5px 0 0 var(--ink);
 }
 .hero__headline em {
   font-style: normal;
   color: var(--gold-d);
+  -webkit-text-stroke: 0.7px var(--gold-d);
+  text-shadow: 0.5px 0 0 var(--gold-d), -0.5px 0 0 var(--gold-d);
 }
 .hero__sub {
   font-family: var(--fell);
   font-style: italic;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: bold;
   color: var(--silver);
   line-height: 1.72;
   max-width: 460px;
@@ -305,11 +403,18 @@ ul { list-style: none; }
   margin-top: .25rem;
 }
 
-/* Right — Black */
+/* Right — Black with video */
 .hero__right {
   background: var(--ink);
   position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
+}
+.hero__video-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  z-index: 0;
 }
 .hero__grid-bg {
   position: absolute; inset: 0;
@@ -317,10 +422,12 @@ ul { list-style: none; }
     linear-gradient(rgba(184,168,122,.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(184,168,122,.035) 1px, transparent 1px);
   background-size: 42px 42px;
+  z-index: 1;
 }
 .hero__corner {
   position: absolute; width: 20px; height: 20px;
   border-color: rgba(184,168,122,.3); border-style: solid;
+  z-index: 2;
 }
 .hero__corner--tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
 .hero__corner--tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
@@ -923,6 +1030,7 @@ ul { list-style: none; }
 .diagnostico__cta-wrap::before {
   content: ''; position: absolute; inset: -6px;
   border: 1px solid rgba(184,168,122,.07);
+  pointer-events: none;
 }
 .diagnostico__cta-icon {
   width: 64px; height: 64px; margin-bottom: 1.5rem;
@@ -945,6 +1053,8 @@ ul { list-style: none; }
   padding: 1rem 2.2rem;
   background: var(--ink); color: var(--parchment);
   border: 1px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
   transition: background .25s, border-color .25s, transform .2s;
 }
 .btn-diagnostico:hover { background: var(--gold-d); border-color: var(--gold-d); transform: translateY(-2px); }
@@ -1030,294 +1140,175 @@ ul { list-style: none; }
 .newsletter-form button:hover { background: var(--gold); }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   CONTACTO — New section
+   CONTACTO — v26
    ═══════════════════════════════════════════════════════════════════════ */
 .contacto {
-  padding: 8rem 0; background: var(--ink);
-  position: relative; overflow: hidden;
+  padding: 3.5rem 0 4rem;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
 }
-.contacto__grid-bg {
+/* Video background */
+.contacto__video-bg {
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(184,168,122,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,168,122,.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-/* Subtle warm glow top-center */
-.contacto__grid-bg::after {
-  content: '';
-  position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 400px;
-  background: radial-gradient(ellipse, rgba(184,168,122,.06) 0%, transparent 70%);
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
   pointer-events: none;
 }
-.contacto__inner { position: relative; z-index: 2; }
-
-/* ── Header ── */
-.contacto__header { text-align: center; margin-bottom: 4rem; }
+/* Dark overlay over video */
+.contacto__video-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,10,10,.72);
+  z-index: 1;
+}
+.contacto__header {
+  text-align: left;
+  margin-bottom: 2rem;
+  max-width: var(--max-w);
+  margin-left: auto; margin-right: auto;
+  padding: 0 2.5rem;
+}
+.contacto__header-eyebrow {
+  font-family: var(--display); font-size: .44rem;
+  letter-spacing: .34em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: .7rem;
+  margin-bottom: .7rem; opacity: .8;
+}
+.contacto__header-eyebrow::before {
+  content: ''; width: 20px; height: 1px;
+  background: var(--gold); opacity: .6; display: block;
+}
 .contacto__header h2 {
   font-family: var(--display);
-  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-  font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
-  color: var(--parchment); line-height: 1.2; margin-bottom: .6rem;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--parchment); line-height: 1.2;
 }
 .contacto__header p {
   font-family: var(--fell); font-style: italic;
-  font-size: 1.05rem; color: rgba(245,240,232,.45);
+  font-size: .88rem; color: rgba(245,240,232,.38);
+  margin-top: .4rem;
 }
 
-/* ── Main 2-col layout: form | aside ── */
-.contacto__layout {
-  display: grid; grid-template-columns: 1fr 320px;
-  gap: 3rem; align-items: start;
+/* Two-column card layout */
+.contacto__grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 1.4rem;
+  align-items: start;
 }
 
-/* ── Form panel ── */
-.contacto__form-wrap {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(184,168,122,.14);
-  padding: 2.8rem 3rem;
+/* ── Shared card style ── */
+.contacto__card {
+  background: var(--parchment);
+  padding: 2rem 2.2rem;
   position: relative;
 }
-/* corner accents */
-.contacto__form-wrap::before,
-.contacto__form-wrap::after {
-  content: ''; position: absolute;
-  width: 18px; height: 18px;
-  border-color: rgba(184,168,122,.3); border-style: solid;
-}
-.contacto__form-wrap::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-.contacto__form-wrap::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
-
-/* ── Section divider inside form ── */
-.contact-form__section-label {
-  font-family: var(--display); font-size: .46rem;
-  letter-spacing: .34em; text-transform: uppercase;
-  color: var(--gold-d); opacity: .7;
-  display: flex; align-items: center; gap: .8rem;
-  margin-bottom: 1.4rem; margin-top: .5rem;
-}
-.contact-form__section-label::after {
-  content: ''; flex: 1; height: 1px;
-  background: rgba(184,168,122,.12);
-}
-
-.contact-form { }
-.contact-form__row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  margin-bottom: 0;
-}
-.contact-form__field { margin-bottom: 1.1rem; }
-.contact-form label {
-  font-family: var(--display); font-size: .44rem;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(184,168,122,.65); display: block; margin-bottom: .45rem;
-  transition: color .2s;
-}
-.contact-form__field:focus-within label { color: var(--gold); }
-.contact-form input,
-.contact-form select {
-  width: 100%;
-  font-family: var(--serif); font-size: .92rem;
-  padding: .75rem 1rem;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(184,168,122,.18);
-  border-bottom: 1px solid rgba(184,168,122,.32);
-  color: var(--parchment); outline: none;
-  transition: border-color .25s, background .2s, box-shadow .2s;
-  -webkit-appearance: none;
-}
-.contact-form input::placeholder { color: rgba(245,240,232,.2); }
-.contact-form input:focus,
-.contact-form select:focus {
-  border-color: var(--gold);
-  background: rgba(184,168,122,.05);
-  box-shadow: 0 4px 16px rgba(184,168,122,.06);
-}
-.contact-form select option { background: var(--carbon); color: var(--parchment); }
-
-/* ── Radio tiles ── */
-.contact-form__radio-group {
-  display: grid; grid-template-columns: 1fr 1fr; gap: .55rem;
-  margin-bottom: 2rem;
-}
-.contact-form__radio {
-  position: relative; cursor: pointer;
-  padding: .9rem 1rem .9rem 2.8rem;
-  border: 1px solid rgba(184,168,122,.16);
-  background: rgba(255,255,255,.02);
-  transition: border-color .2s, background .2s;
-}
-.contact-form__radio:hover {
-  border-color: rgba(184,168,122,.38);
-  background: rgba(184,168,122,.04);
-}
-/* hide native radio */
-.contact-form__radio input[type="radio"] {
-  position: absolute; opacity: 0; width: 0; height: 0;
-}
-/* custom circle indicator */
-.contact-form__radio::before {
+.contacto__card::before {
   content: '';
-  position: absolute; left: .9rem; top: 50%; transform: translateY(-50%);
-  width: 14px; height: 14px; border-radius: 50%;
-  border: 1px solid rgba(184,168,122,.35);
-  background: transparent;
-  transition: border-color .2s, background .2s;
-}
-/* selected state */
-.contact-form__radio:has(input:checked) {
-  border-color: var(--gold);
-  background: rgba(184,168,122,.07);
-}
-.contact-form__radio:has(input:checked)::before {
-  background: var(--gold-d);
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(184,168,122,.12);
-}
-.contact-form__radio:has(input:checked) span { color: var(--parchment); }
-.contact-form__radio span {
-  font-family: var(--serif); font-size: .88rem;
-  color: rgba(245,240,232,.45);
-  transition: color .2s;
-  display: block; line-height: 1.35;
-}
-
-/* ── Submit button ── */
-.contact-form__submit {
-  display: flex; align-items: center; justify-content: space-between;
-  font-family: var(--display); font-size: .52rem;
-  letter-spacing: .22em; text-transform: uppercase;
-  padding: 1.1rem 1.8rem;
-  background: var(--gold-d); color: var(--white);
-  border: 1px solid var(--gold-d); cursor: pointer; width: 100%;
-  transition: background .25s, border-color .25s, transform .2s, box-shadow .2s;
-  position: relative; overflow: hidden;
-}
-.contact-form__submit::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
-  transform: translateX(-100%);
-  transition: transform .5s var(--ease-out);
-}
-.contact-form__submit:hover {
-  background: var(--gold); border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(184,168,122,.22);
-}
-.contact-form__submit:hover::before { transform: translateX(100%); }
-.contact-form__submit-text { }
-.contact-form__submit-icon {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: border-color .2s, transform .2s;
-}
-.contact-form__submit:hover .contact-form__submit-icon {
-  border-color: rgba(255,255,255,.6); transform: translateX(3px);
-}
-
-/* ── Success state ── */
-.contact-success {
-  display: none;
-  padding: 3.5rem 2.5rem;
-  background: rgba(184,168,122,.06);
-  border: 1px solid rgba(184,168,122,.2);
-  text-align: center;
-  position: relative;
-}
-.contact-success::before {
-  content: ''; position: absolute; inset: -6px;
-  border: 1px solid rgba(184,168,122,.07);
-  pointer-events: none;
-}
-.contact-success__icon {
-  width: 56px; height: 56px; margin: 0 auto 1.8rem;
-  border: 1px solid var(--gold); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-.contact-success__icon svg { width: 22px; height: 18px; stroke: var(--gold); }
-.contact-success h3 {
-  font-family: var(--display); font-size: .74rem;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--parchment); margin-bottom: 1rem;
-}
-.contact-success p {
-  font-family: var(--fell); font-style: italic;
-  font-size: 1rem; color: rgba(245,240,232,.62); line-height: 1.85;
-}
-
-/* ── Aside column ── */
-.contacto__aside { display: flex; flex-direction: column; gap: 0; }
-.contacto__wa-box {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(184,168,122,.2);
-  padding: 2.2rem 2rem 2rem;
-  margin-bottom: 0;
-  position: relative;
-}
-.contacto__wa-box::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold-d), transparent);
   opacity: .5;
 }
-.contacto__wa-title {
-  font-family: var(--display); font-size: .54rem;
-  letter-spacing: .28em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: .65rem; display: block;
-}
-.contacto__wa-desc {
-  font-family: var(--fell); font-style: italic;
-  font-size: .88rem; color: rgba(245,240,232,.45);
-  line-height: 1.65; margin-bottom: 1.4rem;
-}
-.contacto__wa-btn {
-  display: flex; align-items: center; justify-content: center; gap: .7rem;
-  font-family: var(--display); font-size: .48rem;
-  letter-spacing: .2em; text-transform: uppercase;
-  padding: .85rem 1.4rem;
-  background: #25D366; color: var(--white);
-  border: none; cursor: pointer; text-decoration: none; width: 100%;
-  transition: background .25s, transform .2s;
-}
-.contacto__wa-btn:hover { background: #1da851; transform: translateY(-2px); }
-.contacto__wa-icon { width: 18px; height: 18px; flex-shrink: 0; }
-
-/* contact info list below WA box */
-.contacto__info-list {
-  border: 1px solid rgba(184,168,122,.14);
-  border-top: none;
-  padding: .4rem 0;
-}
-.contacto__info-item {
-  padding: .85rem 2rem;
-  border-bottom: 1px solid rgba(184,168,122,.08);
-  display: flex; gap: .9rem; align-items: center;
-}
-.contacto__info-item:last-child { border-bottom: none; }
-.contacto__info-label {
+.contacto__card-label {
   font-family: var(--display); font-size: .42rem;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--gold-d); min-width: 72px; opacity: .8;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold-d); margin-bottom: .9rem; display: block; opacity: .85;
 }
-.contacto__info-val {
-  font-family: var(--serif); font-size: .86rem;
-  color: rgba(245,240,232,.48); line-height: 1.4;
+.contacto__card-title {
+  font-family: var(--display);
+  font-size: clamp(.78rem, 1.2vw, 1rem);
+  font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink); margin-bottom: .3rem;
+}
+.contacto__card-sub {
+  font-family: var(--fell); font-style: italic;
+  font-size: .82rem; color: var(--silver); margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+
+/* Tally iframe */
+.contacto__tally-wrap iframe {
+  display: block; width: 100%; border: none;
+}
+
+/* ── Right card: channels ── */
+.contacto__wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  font-family: var(--display); font-size: .42rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding: .7rem 1rem; background: #25D366; color: #fff;
+  text-decoration: none; width: 100%; margin-bottom: 1.4rem;
+  transition: background .2s, transform .15s;
+}
+.contacto__wa-btn:hover { background: #1da851; transform: translateY(-1px); }
+.contacto__wa-icon { width: 13px; height: 13px; flex-shrink: 0; }
+
+.contacto__divider {
+  height: 1px; background: rgba(26,26,24,.08);
+  margin: 1rem 0;
+}
+.contacto__channels { display: flex; flex-direction: column; gap: 0; }
+.contacto__channel {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid rgba(26,26,24,.07);
+  text-decoration: none; transition: opacity .2s;
+}
+.contacto__channel:last-child { border-bottom: none; }
+.contacto__channel:hover { opacity: .65; }
+.contacto__channel-icon {
+  width: 26px; height: 26px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(140,122,82,.1); border-radius: 50%;
+}
+.contacto__channel-icon svg { width: 12px; height: 12px; display: block; }
+.contacto__channel-info { display: flex; flex-direction: column; }
+.contacto__channel-label {
+  font-family: var(--display); font-size: .34rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold-d); opacity: .7; line-height: 1.2;
+}
+.contacto__channel-val {
+  font-family: var(--serif); font-size: .78rem;
+  color: var(--carbon); line-height: 1.3;
+}
+
+@media (max-width: 820px) {
+  .contacto__grid { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
    FINAL CTA
+
    ═══════════════════════════════════════════════════════════════════════ */
 .cta-final {
-  padding: 9rem 0; background: var(--parchment);
+  padding: 9rem 0;
   position: relative; overflow: hidden; text-align: center;
 }
+.cta-final__video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0;
+}
+.cta-final__overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(10,10,10,.82) 0%,
+    rgba(26,26,24,.75) 50%,
+    rgba(140,122,82,.18) 100%
+  );
+}
 .cta-final__grid-bg {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 1;
   background-image:
-    linear-gradient(rgba(140,122,82,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(140,122,82,.05) 1px, transparent 1px);
+    linear-gradient(rgba(184,168,122,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,168,122,.06) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 .cta-final__inner { position: relative; z-index: 2; }
@@ -1328,19 +1319,23 @@ ul { list-style: none; }
 .cta-final__eyebrow::before,
 .cta-final__eyebrow::after {
   content: ''; display: block; width: 28px; height: 1px;
-  background: var(--gold-d); opacity: .6;
+  background: var(--gold); opacity: .8;
 }
+.cta-final__eyebrow .label-text { color: var(--gold-l); }
 .cta-final__headline {
   font-family: var(--display);
   font-size: clamp(1.8rem, 4.2vw, 3.2rem);
-  font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
-  color: var(--ink); line-height: 1.1; margin-bottom: 1.5rem;
+  font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--parchment); line-height: 1.1; margin-bottom: 1.5rem;
+  -webkit-text-stroke: 0.5px var(--parchment);
+  text-shadow: 0 2px 32px rgba(0,0,0,.4);
 }
 .cta-final__sub {
   font-family: var(--fell); font-style: italic;
   font-size: clamp(.95rem, 1.5vw, 1.15rem);
-  color: var(--silver); margin-bottom: 3rem;
+  color: var(--pale); margin-bottom: 3rem;
   max-width: 500px; margin-left: auto; margin-right: auto;
+  text-shadow: 0 1px 12px rgba(0,0,0,.5);
 }
 .cta-final__btns {
   display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
@@ -1351,21 +1346,21 @@ ul { list-style: none; }
   font-family: var(--display); font-size: .56rem;
   letter-spacing: .2em; text-transform: uppercase;
   padding: .95rem 2.2rem;
-  background: var(--ink); color: var(--parchment);
-  border: 1px solid var(--ink);
+  background: var(--gold-d); color: var(--parchment);
+  border: 1px solid var(--gold-d);
   transition: background .25s, border-color .25s, transform .2s;
 }
-.btn-light:hover { background: var(--gold-d); color: var(--white); border-color: var(--gold-d); transform: translateY(-2px); }
+.btn-light:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); transform: translateY(-2px); }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: .6rem;
   font-family: var(--display); font-size: .56rem;
   letter-spacing: .2em; text-transform: uppercase;
   padding: .95rem 2.2rem;
-  background: transparent; color: var(--silver);
-  border: 1px solid rgba(26,26,24,.2);
+  background: transparent; color: var(--parchment);
+  border: 1px solid rgba(245,240,232,.35);
   transition: border-color .25s, color .25s, transform .2s;
 }
-.btn-ghost:hover { border-color: var(--gold-d); color: var(--gold-d); transform: translateY(-2px); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 .cta-final__contacts {
   display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
 }
@@ -1373,13 +1368,13 @@ ul { list-style: none; }
 .cta-contact__label {
   font-family: var(--display); font-size: .5rem;
   letter-spacing: .3em; text-transform: uppercase;
-  color: var(--gold-d); display: block; margin-bottom: .4rem;
+  color: var(--gold-l); display: block; margin-bottom: .4rem;
 }
 .cta-contact__value {
   font-family: var(--serif); font-size: .92rem;
-  color: var(--silver); transition: color .25s;
+  color: var(--pale); transition: color .25s;
 }
-.cta-contact a:hover .cta-contact__value { color: var(--gold-d); }
+.cta-contact a:hover .cta-contact__value { color: var(--gold); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    FOOTER
@@ -1395,8 +1390,10 @@ footer {
 }
 .footer__brand-desc {
   font-family: var(--serif); font-size: .9rem;
+  font-weight: bold;
   color: rgba(245,240,232,.42); line-height: 1.8; margin-top: 1rem;
   max-width: 280px;
+  text-shadow: 0.4px 0 0 rgba(245,240,232,.42), -0.4px 0 0 rgba(245,240,232,.42);
 }
 .footer__col-title {
   font-family: var(--display); font-size: .54rem;
@@ -1406,7 +1403,9 @@ footer {
 .footer__links { display: flex; flex-direction: column; gap: .6rem; }
 .footer__links a {
   font-family: var(--serif); font-size: .9rem;
+  font-weight: bold;
   color: rgba(245,240,232,.42); transition: color .25s;
+  text-shadow: 0.4px 0 0 rgba(245,240,232,.42), -0.4px 0 0 rgba(245,240,232,.42);
 }
 .footer__links a:hover { color: var(--parchment); }
 .footer__bottom {
@@ -1416,16 +1415,20 @@ footer {
 .footer__copy,
 .footer__ruc {
   font-family: var(--display); font-size: .5rem;
+  font-weight: bold;
   letter-spacing: .14em; text-transform: uppercase;
   color: rgba(245,240,232,.22);
+  text-shadow: 0.4px 0 0 rgba(245,240,232,.22), -0.4px 0 0 rgba(245,240,232,.22);
 }
 .footer__social {
   display: flex; gap: 1.2rem; align-items: center;
 }
 .footer__social a {
   font-family: var(--display); font-size: .52rem;
+  font-weight: bold;
   letter-spacing: .14em; text-transform: uppercase;
   color: rgba(245,240,232,.35); transition: color .25s;
+  text-shadow: 0.4px 0 0 rgba(245,240,232,.35), -0.4px 0 0 rgba(245,240,232,.35);
 }
 .footer__social a:hover { color: var(--gold); }
 
@@ -1550,16 +1553,14 @@ footer {
   <div class="nav__inner">
 
     <a href="#inicio" class="nav__logo" aria-label="Método Pacioli — Inicio">
-      <svg class="nav__logo-mark" viewBox="0 0 260 230" fill="none" aria-hidden="true">
-        <line x1="22"  y1="200" x2="75"  y2="38"  stroke="#1A1A18" stroke-width="8.5" stroke-linecap="round"/>
-        <line x1="75"  y1="38"  x2="130" y2="192" stroke="#1A1A18" stroke-width="8.5" stroke-linecap="round"/>
-        <line x1="130" y1="192" x2="185" y2="38"  stroke="#1A1A18" stroke-width="8.5" stroke-linecap="round"/>
-        <line x1="185" y1="38"  x2="238" y2="200" stroke="#1A1A18" stroke-width="8.5" stroke-linecap="round"/>
-        <circle cx="22"  cy="200" r="19" fill="#1A1A18"/>
-        <circle cx="75"  cy="38"  r="19" fill="#1A1A18"/>
-        <circle cx="130" cy="192" r="19" fill="#1A1A18"/>
-        <circle cx="185" cy="38"  r="19" fill="#1A1A18"/>
-        <circle cx="238" cy="200" r="19" fill="#1A1A18"/>
+      <svg class="nav__logo-mark" viewBox="0 0 141.28 97.97" fill="none" aria-hidden="true">
+        <path fill="none" stroke="#1A1A18" stroke-width="3.48697" stroke-linecap="round" stroke-linejoin="round"
+              d="M 13.875,83.828 L 35.422,14.109 L 70.281,83.828 L 105.145,14.109 L 126.688,83.828"/>
+        <circle cx="13.875" cy="83.828" r="8.92" fill="#1A1A18"/>
+        <circle cx="35.422" cy="14.109" r="8.92" fill="#1A1A18"/>
+        <circle cx="70.281" cy="83.828" r="8.92" fill="#1A1A18"/>
+        <circle cx="105.145" cy="14.109" r="8.92" fill="#1A1A18"/>
+        <circle cx="126.688" cy="83.828" r="8.92" fill="#1A1A18"/>
       </svg>
       <div class="nav__logo-text">
         Método Pacioli
@@ -1572,6 +1573,7 @@ footer {
       <li><a href="#inicio">Home</a></li>
       <li><a href="#que-hacemos">Qué Hacemos</a></li>
       <li><a href="#nosotros">Quiénes Somos</a></li>
+      <li><a href="#ventajas">Ventajas</a></li>
       <li><a href="#comunidad">Comunidad</a></li>
       <li><a href="#recursos">Recursos</a></li>
       <li><a href="#contacto">Contáctanos</a></li>
@@ -1590,6 +1592,7 @@ footer {
   <a href="#inicio"       onclick="closeMobile()">Home</a>
   <a href="#que-hacemos"  onclick="closeMobile()">Qué Hacemos</a>
   <a href="#nosotros"     onclick="closeMobile()">Quiénes Somos</a>
+  <a href="#ventajas"     onclick="closeMobile()">Ventajas</a>
   <a href="#comunidad"    onclick="closeMobile()">Comunidad</a>
   <a href="#recursos"     onclick="closeMobile()">Recursos</a>
   <a href="#contacto"     onclick="closeMobile()">Contáctanos</a>
@@ -1628,6 +1631,11 @@ footer {
         Quiero aprender gratis
         <svg class="btn-arrow" viewBox="0 0 14 10" aria-hidden="true"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
       </a>
+      <!-- Btn C → scroll to #ventajas -->
+      <a href="#ventajas" class="btn-secondary">
+        Ventajas para clientes
+        <svg class="btn-arrow" viewBox="0 0 14 10" aria-hidden="true"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+      </a>
     </div>
 
     <div class="hero__stats reveal reveal-d4">
@@ -1649,6 +1657,9 @@ footer {
 
   <!-- Right: black with animated logo -->
   <div class="hero__right">
+    <video class="hero__video-bg" autoplay muted loop playsinline preload="none" aria-hidden="true">
+      <source src="17031007-hd_1080_1920_25fps.mp4" type="video/mp4">
+    </video>
     <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
     <div class="hero__corner hero__corner--tr" aria-hidden="true"></div>
@@ -1656,16 +1667,14 @@ footer {
     <div class="hero__corner hero__corner--br" aria-hidden="true"></div>
 
     <div class="hero__logo-stage">
-      <svg id="hero-svg" viewBox="0 0 260 230" fill="none" aria-label="Logo Método Pacioli — quipu M">
-        <line id="hl1" class="hl" x1="22"  y1="200" x2="75"  y2="38"  stroke="#F5F0E8" stroke-width="7" stroke-linecap="round"/>
-        <line id="hl2" class="hl" x1="75"  y1="38"  x2="130" y2="192" stroke="#F5F0E8" stroke-width="7" stroke-linecap="round"/>
-        <line id="hl3" class="hl" x1="130" y1="192" x2="185" y2="38"  stroke="#F5F0E8" stroke-width="7" stroke-linecap="round"/>
-        <line id="hl4" class="hl" x1="185" y1="38"  x2="238" y2="200" stroke="#F5F0E8" stroke-width="7" stroke-linecap="round"/>
-        <circle id="hk1" class="hk" cx="22"  cy="200" r="18" fill="#F5F0E8"/>
-        <circle id="hk2" class="hk" cx="75"  cy="38"  r="18" fill="#F5F0E8"/>
-        <circle id="hk3" class="hk" cx="130" cy="192" r="18" fill="#F5F0E8"/>
-        <circle id="hk4" class="hk" cx="185" cy="38"  r="18" fill="#F5F0E8"/>
-        <circle id="hk5" class="hk" cx="238" cy="200" r="18" fill="#F5F0E8"/>
+      <svg id="hero-svg" viewBox="0 0 141.28 97.97" fill="none" aria-label="Logo Método Pacioli — quipu M">
+        <path id="hl1" class="hl" fill="none" stroke="#F5F0E8" stroke-width="3.48697" stroke-linecap="round" stroke-linejoin="round"
+              d="M 13.875,83.828 L 35.422,14.109 L 70.281,83.828 L 105.145,14.109 L 126.688,83.828"/>
+        <circle id="hk1" class="hk" cx="13.875" cy="83.828" r="8.92" fill="#F5F0E8"/>
+        <circle id="hk2" class="hk" cx="35.422" cy="14.109" r="8.92" fill="#F5F0E8"/>
+        <circle id="hk3" class="hk" cx="70.281" cy="83.828" r="8.92" fill="#F5F0E8"/>
+        <circle id="hk4" class="hk" cx="105.145" cy="14.109" r="8.92" fill="#F5F0E8"/>
+        <circle id="hk5" class="hk" cx="126.688" cy="83.828" r="8.92" fill="#F5F0E8"/>
       </svg>
       <p class="hero__logo-wordmark" id="hero-wm">MÉTODO PACIOLI</p>
       <p class="hero__logo-tagline"  id="hero-tag">Precisión con propósito</p>
@@ -1933,7 +1942,7 @@ footer {
       <p class="modal-box__subtitle">Cumplir y optimizar.</p>
     </div>
     <div class="modal-box__body">
-      <p class="modal-box__desc">El cumplimiento tributario no debería ser una carga inesperada. Con una planificación adecuada, puede ser predecible, ordenada y eficiente. En Método Pacioli gestionamos todas tus obligaciones con SUNAT y construimos estrategias legales para reducir la carga fiscal de forma sostenible.</p>
+      <p class="modal-box__desc">El cumplimiento tributario no debería ser una carga inesperada. Con una planificación adecuada, puede ser predecible, ordenada y eficiente. En Método Pacioli gestionamos todas tus obligaciones con las entidades tributarias y construimos estrategias legales para reducir la carga fiscal de forma sostenible.</p>
       <span class="modal-box__services-label">Algunos de los servicios que incluye esta sección:</span>
       <div class="modal-service-item">
         <h4>a. Registros de compras y ventas</h4>
@@ -1952,8 +1961,8 @@ footer {
         <p>Análisis proactivo del impacto fiscal de tus decisiones empresariales. Diseñamos un mapa de riesgos tributarios y una estrategia de cumplimiento que te protege ante fiscalizaciones y minimiza la contingencia.</p>
       </div>
       <div class="modal-service-item">
-        <h4>e. Respuesta a fiscalizaciones SUNAT</h4>
-        <p>Acompañamiento completo en procedimientos de fiscalización, auditorías parciales o definitivas, esquelas de SUNAT y presentación de descargos con sustento técnico-legal.</p>
+        <h4>e. Respuesta a fiscalizaciones tributarias</h4>
+        <p>Acompañamiento completo en procedimientos de fiscalización, auditorías parciales o definitivas, esquelas de la autoridad tributaria y presentación de descargos con sustento técnico-legal.</p>
       </div>
     </div>
   </div>
@@ -1977,7 +1986,7 @@ footer {
       </div>
       <div class="modal-service-item">
         <h4>b. T-Registro y PDT 601</h4>
-        <p>Alta, modificación y baja de trabajadores en el T-Registro de SUNAT. Presentación mensual del PDT Planilla Electrónica (PDT 601 / PLAME) con los datos exactos de cada período.</p>
+        <p>Alta, modificación y baja de trabajadores en el registro de entidades públicas. Presentación mensual del PDT Planilla Electrónica (PDT 601 / PLAME) con los datos exactos de cada período.</p>
       </div>
       <div class="modal-service-item">
         <h4>c. Control de beneficios sociales</h4>
@@ -1985,7 +1994,7 @@ footer {
       </div>
       <div class="modal-service-item">
         <h4>d. Gestión de contingencias laborales</h4>
-        <p>Identificación y gestión preventiva de contingencias laborales. Acompañamiento ante inspecciones de SUNAFIL y MTPE, y revisión de contratos para asegurar el cumplimiento normativo.</p>
+        <p>Identificación y gestión preventiva de contingencias laborales. Acompañamiento ante inspecciones de entidades laborales competentes, y revisión de contratos para asegurar el cumplimiento normativo.</p>
       </div>
     </div>
   </div>
@@ -2013,7 +2022,7 @@ footer {
       </div>
       <div class="modal-service-item">
         <h4>c. Facturación electrónica</h4>
-        <p>Configuración e implementación de sistemas de facturación electrónica validados por SUNAT. Integración con tu flujo de ventas y emisión en tiempo real para clientes en cualquier parte del país.</p>
+        <p>Configuración e implementación de sistemas de facturación electrónica validados por la autoridad tributaria. Integración con tu flujo de ventas y emisión en tiempo real para clientes en cualquier parte del país.</p>
       </div>
       <div class="modal-service-item">
         <h4>d. Reportes automatizados</h4>
@@ -2049,11 +2058,11 @@ footer {
       </div>
       <div class="modal-service-item">
         <h4>d. Beneficiario Final</h4>
-        <p>Identificación, declaración y actualización del registro de Beneficiario Final ante SUNAT, en cumplimiento de la normativa de transparencia corporativa y prevención del lavado de activos.</p>
+        <p>Identificación, declaración y actualización del registro de Beneficiario Final ante la autoridad competente, en cumplimiento de la normativa de transparencia corporativa y prevención del lavado de activos.</p>
       </div>
       <div class="modal-service-item">
         <h4>e. Saldo a favor del exportador (SFE)</h4>
-        <p>Solicitud de compensación o devolución del IGV a favor del exportador ante SUNAT, con preparación del expediente completo, validación de documentos y seguimiento hasta la resolución del caso.</p>
+        <p>Solicitud de compensación o devolución del IGV a favor del exportador ante la autoridad tributaria, con preparación del expediente completo, validación de documentos y seguimiento hasta la resolución del caso.</p>
       </div>
     </div>
   </div>
@@ -2556,6 +2565,191 @@ footer {
 
 
 <!-- ═══════════════════════════════════════════════════════════════════════
+     VENTAJAS EXCLUSIVAS — id="ventajas"
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="ventajas" id="ventajas" aria-label="Ventajas exclusivas para clientes">
+  <div class="container">
+
+    <div class="ventajas__header reveal">
+      <span class="label-text label-text--center" style="margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.8rem">
+        <span style="display:block;width:28px;height:1px;background:var(--gold)"></span>
+        Solo para clientes activos
+        <span style="display:block;width:28px;height:1px;background:var(--gold)"></span>
+      </span>
+      <h2 class="section-title section-title--light">Ventajas Exclusivas</h2>
+      <div class="gold-rule gold-rule--center"></div>
+      <p style="font-family:var(--serif);font-size:.95rem;color:rgba(245,240,232,.52);max-width:540px;margin:0 auto;text-align:center;line-height:1.85">
+        Más allá del servicio técnico. Cada cliente activo de Método Pacioli accede a un ecosistema diseñado para acompañar su crecimiento real.
+        <em style="font-style:italic;color:var(--gold)"> Haz clic en cada ventaja para conocer más.</em>
+      </p>
+    </div>
+
+    <div class="ventajas__grid">
+
+      <!-- 1 -->
+      <div class="vnt-card reveal" onclick="openVnt('doc')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">01</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="8" y="6" width="22" height="30" rx="1" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M12 13h14M12 18h10M12 23h8" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+          <path d="M26 28l8-8" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".4"/>
+          <circle cx="34" cy="34" r="5" stroke="#B8A87A" stroke-width="1"/>
+          <path d="M32 34l1.5 1.5L36 32" stroke="#B8A87A" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <h3 class="vnt-card__title">Archivo digital organizado</h3>
+        <p class="vnt-card__desc">Tu documentación contable, segura y disponible en la nube en todo momento.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 2 -->
+      <div class="vnt-card reveal reveal-d1" onclick="openVnt('reunion')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">02</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="22" cy="16" r="7" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M8 36c0-7 6.3-12 14-12s14 5 14 12" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M30 20l3 2-3 2" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <h3 class="vnt-card__title">Reuniones mensuales de análisis</h3>
+        <p class="vnt-card__desc">No solo te entregamos información: te ayudamos a leerla y usarla.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="vnt-card reveal reveal-d2" onclick="openVnt('cap')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">03</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <path d="M8 18l14-8 14 8-14 8-14-8z" stroke="#B8A87A" stroke-width="1.1" stroke-linejoin="round"/>
+          <path d="M14 21v9c0 3 3.6 6 8 6s8-3 8-6v-9" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M36 18v8" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <h3 class="vnt-card__title">Capacitaciones incluidas</h3>
+        <p class="vnt-card__desc">Formación financiera y tributaria para ti y tu equipo. Saber es poder.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 4 -->
+      <div class="vnt-card reveal reveal-d3" onclick="openVnt('prev')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">04</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <path d="M22 6l14 6v10c0 9-6 15-14 18C14 37 8 31 8 22V12l14-6z" stroke="#B8A87A" stroke-width="1.1" stroke-linejoin="round"/>
+          <path d="M16 22l4 4 8-8" stroke="#B8A87A" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <h3 class="vnt-card__title">Informe de contingencias</h3>
+        <p class="vnt-card__desc">Identificamos riesgos tributarios y laborales antes de que sean un problema.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 5 -->
+      <div class="vnt-card reveal reveal-d1" onclick="openVnt('dash')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">05</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="6" y="8" width="32" height="24" rx="1" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M12 24l6-6 5 4 5-7 6 4" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 32h12" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".4"/>
+        </svg>
+        <h3 class="vnt-card__title">Dashboard financiero</h3>
+        <p class="vnt-card__desc">Tu información financiera clave, visualizada en tiempo real. Sin hojas de cálculo.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 6 -->
+      <div class="vnt-card reveal reveal-d2" onclick="openVnt('news')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">06</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="6" y="10" width="32" height="26" rx="1" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M6 17h32" stroke="#B8A87A" stroke-width="1" opacity=".4"/>
+          <path d="M12 23h10M12 28h7" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+          <circle cx="30" cy="25" r="5" stroke="#B8A87A" stroke-width="1"/>
+          <path d="M28 25h4M30 23v4" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <h3 class="vnt-card__title">Newsletter técnico mensual</h3>
+        <p class="vnt-card__desc">Novedades normativas y tributarias que te afectan, en lenguaje claro.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 7 -->
+      <div class="vnt-card reveal reveal-d3" onclick="openVnt('digital')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">07</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="10" y="8" width="24" height="28" rx="2" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M17 38h10" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M22 34v4" stroke="#B8A87A" stroke-width="1" opacity=".5"/>
+          <path d="M16 16l4 4 8-8" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <h3 class="vnt-card__title">Modelo 100% digital</h3>
+        <p class="vnt-card__desc">Sin papel, sin desplazamientos. Todo gestionado en plataformas seguras.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 8 -->
+      <div class="vnt-card reveal reveal-d1" onclick="openVnt('alianza')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">08</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <path d="M16 22c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6z" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M8 12l4 2M8 32l4-2M36 12l-4 2M36 32l-4-2" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+          <path d="M22 10V8M22 36v-2" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".4"/>
+        </svg>
+        <h3 class="vnt-card__title">Alianzas estratégicas</h3>
+        <p class="vnt-card__desc">Tarifas preferenciales en facturación electrónica y servicios de nuestros socios.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 9 — wide card: Comunidad -->
+      <div class="vnt-card vnt-card--wide reveal reveal-d2" onclick="openVnt('comunidad')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">09</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="6" stroke="#B8A87A" stroke-width="1.1"/>
+          <circle cx="28" cy="16" r="6" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M8 36c0-5 3.6-9 8-9M28 36c0-5-3.6-9-8-9" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M28 27c4.4 0 8 4 8 9" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <div class="vnt-card__wide-content">
+          <div>
+            <h3 class="vnt-card__title">Red Método Pacioli</h3>
+            <p class="vnt-card__desc">Pool de proveedores y clientes, eventos de networking, cursos gratuitos, sorteos y descuentos exclusivos. Construir empresa no debería ser un camino solitario.</p>
+          </div>
+          <div class="vnt-card__tags">
+            <span class="vnt-tag">Networking</span>
+            <span class="vnt-tag">Comunidad</span>
+            <span class="vnt-tag">Cursos</span>
+            <span class="vnt-tag">Sorteos</span>
+            <span class="vnt-tag">Descuentos</span>
+          </div>
+        </div>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VENTAJAS MODALS -->
+<div class="modal-overlay" id="vnt-modal" role="dialog" aria-modal="true" onclick="handleVntModalClick(event)">
+  <div class="modal-box">
+    <button class="modal-box__close" onclick="closeVnt()" aria-label="Cerrar">✕</button>
+    <div class="modal-box__header">
+      <span class="modal-box__label" id="vnt-modal-label"></span>
+      <h3 class="modal-box__title" id="vnt-modal-title"></h3>
+      <p class="modal-box__subtitle" id="vnt-modal-sub"></p>
+    </div>
+    <div class="modal-box__body">
+      <p class="modal-box__desc" id="vnt-modal-desc"></p>
+      <span class="modal-box__services-label">Lo que incluye</span>
+      <div id="vnt-modal-items"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
      FREE RESOURCES (Sección 8) — id="recursos"
      ═══════════════════════════════════════════════════════════════════════ -->
 <section class="resources" id="recursos" aria-label="Recursos gratuitos">
@@ -2598,7 +2792,7 @@ footer {
 
       <div class="resource-card reveal reveal-d2">
         <span class="resource-card__badge">Guía tributaria</span>
-        <h3 class="resource-card__title">Cómo evitar contingencias tributarias antes de que SUNAT llegue</h3>
+        <h3 class="resource-card__title">Cómo evitar contingencias tributarias antes de que llegue una fiscalización</h3>
         <p class="resource-card__desc">Los errores más comunes que cometen las empresas peruanas — y cómo evitarlos con una estructura clara.</p>
         <a href="https://tally.so/r/RG8drP" target="_blank" rel="noopener" class="resource-card__link">
           Leer guía
@@ -2613,87 +2807,131 @@ footer {
         <h3 class="section-title section-title--light">Boletín tributario mensual</h3>
         <p>Actualizaciones normativas, análisis estratégico y oportunidades fiscales — en tu correo cada mes. Sin spam.</p>
       </div>
-      <iframe data-tally-src="https://tally.so/embed/rj2BjL?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-        loading="lazy" width="100%" height="120" frameborder="0"
-        marginheight="0" marginwidth="0"
-        title="Suscripción boletín Método Pacioli"
-        style="min-height:100px;">
-      </iframe>
+      <div class="newsletter-form">
+        <input type="email" id="newsletter-email" placeholder="Tu correo corporativo" autocomplete="email"/>
+        <button type="button" onclick="openNewsletterTally()">Suscribirme</button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     CONTACTO — NEW SECTION (id="contacto")
+     CONTACTO — id="contacto"
      ═══════════════════════════════════════════════════════════════════════ -->
 <section class="contacto" id="contacto" aria-label="Contáctanos">
-  <div class="contacto__grid-bg" aria-hidden="true"></div>
-  <div class="container contacto__inner">
 
-    <div class="contacto__header reveal">
-      <span class="label-text label-text--light label-text--center" style="margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.8rem">
-        <span style="display:block;width:28px;height:1px;background:var(--gold);opacity:.5"></span>
-        Hablemos
-        <span style="display:block;width:28px;height:1px;background:var(--gold);opacity:.5"></span>
-      </span>
-      <h2>Llena tus datos o escríbenos</h2>
-      <p>Un representante de Método Pacioli se pondrá en contacto contigo en pocas horas.</p>
-    </div>
+  <!-- Video background -->
+  <video class="contacto__video-bg" autoplay muted loop playsinline preload="none" aria-hidden="true">
+    <source src="contacto-bg.mp4" type="video/mp4">
+  </video>
+  <div class="contacto__video-overlay" aria-hidden="true"></div>
 
-    <div class="contacto__layout reveal reveal-d1">
+  <!-- Header above cards -->
+  <div class="contacto__header reveal" style="position:relative;z-index:2;">
+    <div class="contacto__header-eyebrow">Hablemos</div>
+    <h2>¿En qué podemos ayudarte?</h2>
+    <p>Un representante de Método Pacioli te responderá en menos de 24 horas hábiles.</p>
+  </div>
 
-      <!-- ── FORM PANEL — Tally embed ── -->
-      <div class="contacto__form-wrap">
+  <!-- Two cards -->
+  <div class="contacto__grid" style="position:relative;z-index:2;">
+
+    <!-- LEFT CARD: Tally form -->
+    <div class="contacto__card reveal">
+      <span class="contacto__card-label">Formulario de contacto</span>
+      <h3 class="contacto__card-title">Cuéntanos sobre tu empresa.</h3>
+      <p class="contacto__card-sub">Completa el formulario y te contactamos con una propuesta personalizada.</p>
+      <div class="contacto__tally-wrap">
         <iframe data-tally-src="https://tally.so/embed/KY8zrA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          loading="lazy" width="100%" height="700" frameborder="0"
+          loading="lazy" width="100%" height="480" frameborder="0"
           marginheight="0" marginwidth="0"
-          title="Formulario de contacto Método Pacioli"
-          style="min-height:600px;">
+          title="Formulario de contacto Método Pacioli">
         </iframe>
       </div>
+    </div>
 
-      <!-- ── ASIDE ── -->
-      <div class="contacto__aside reveal reveal-d2">
+    <!-- RIGHT CARD: Contact channels -->
+    <div class="contacto__card reveal reveal-d1">
+      <span class="contacto__card-label">Canales directos</span>
+      <h3 class="contacto__card-title">Escríbenos directo.</h3>
+      <p class="contacto__card-sub">Preferimos el contacto humano. Elige el canal que más te convenga.</p>
 
-        <!-- WhatsApp block -->
-        <div class="contacto__wa-box">
-          <span class="contacto__wa-title">Escríbenos directo</span>
-          <p class="contacto__wa-desc">Preferimos el contacto humano. Escríbenos en WhatsApp y te respondemos de inmediato.</p>
-          <!-- REEMPLAZAR: Actualizar número de WhatsApp -->
-          <a href="https://wa.me/51982505752?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20M%C3%A9todo%20Pacioli" target="_blank" rel="noopener" class="contacto__wa-btn">
-            <svg class="contacto__wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Chatear por WhatsApp
-          </a>
-        </div>
+      <!-- WhatsApp CTA -->
+      <a href="https://wa.me/51982505752?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20M%C3%A9todo%20Pacioli" target="_blank" rel="noopener" class="contacto__wa-btn">
+        <svg class="contacto__wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chatear por WhatsApp
+      </a>
 
-        <!-- Contact info list -->
-        <div class="contacto__info-list">
-          <div class="contacto__info-item">
-            <span class="contacto__info-label">Email</span>
-            <span class="contacto__info-val">metodopacioli@gmail.com</span>
+      <div class="contacto__divider"></div>
+
+      <!-- All channels -->
+      <div class="contacto__channels">
+
+        <a href="mailto:metodopacioli@gmail.com" class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           </div>
-          <div class="contacto__info-item">
-            <span class="contacto__info-label">WhatsApp</span>
-            <span class="contacto__info-val">+51 982 505 752</span>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">Correo</span>
+            <span class="contacto__channel-val">metodopacioli@gmail.com</span>
           </div>
-          <div class="contacto__info-item">
-            <span class="contacto__info-label">Instagram</span>
-            <span class="contacto__info-val">@metodopacioli</span>
+        </a>
+
+        <a href="tel:+51982505752" class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
           </div>
-          <div class="contacto__info-item">
-            <span class="contacto__info-label">Sede</span>
-            <span class="contacto__info-val">Lima, Perú · Modelo 100% digital</span>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">Teléfono</span>
+            <span class="contacto__channel-val">+51 982 505 752</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/metodopacioli" target="_blank" rel="noopener" class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="var(--gold-d)" stroke="none"/></svg>
+          </div>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">Instagram</span>
+            <span class="contacto__channel-val">@metodopacioli</span>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/company/metodopacioli" target="_blank" rel="noopener" class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4M12 10v7"/></svg>
+          </div>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">LinkedIn</span>
+            <span class="contacto__channel-val">Método Pacioli</span>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/@metodopacioli" target="_blank" rel="noopener" class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10,9 16,12 10,15" fill="var(--gold-d)" stroke="none"/></svg>
+          </div>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">YouTube</span>
+            <span class="contacto__channel-val">@metodopacioli</span>
+          </div>
+        </a>
+
+        <div class="contacto__channel">
+          <div class="contacto__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="contacto__channel-info">
+            <span class="contacto__channel-label">Sede</span>
+            <span class="contacto__channel-val">Lima, Perú · 100% digital</span>
           </div>
         </div>
 
       </div>
-
     </div>
+
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════════════════════════════════
      DIAGNÓSTICO — id="diagnostico"
      ═══════════════════════════════════════════════════════════════════════ -->
@@ -2761,24 +2999,26 @@ footer {
         </p>
       </div>
 
-      <!-- Right: CTA button replacing embedded iframe -->
+      <!-- Right: CTA box -->
       <div class="diagnostico__cta-wrap reveal reveal-d2">
-        <svg class="diagnostico__cta-icon" viewBox="0 0 260 230" fill="none" aria-hidden="true">
-          <line x1="22" y1="200" x2="75" y2="38" stroke="#1A1A18" stroke-width="8" stroke-linecap="round"/>
-          <line x1="75" y1="38" x2="130" y2="192" stroke="#1A1A18" stroke-width="8" stroke-linecap="round"/>
-          <line x1="130" y1="192" x2="185" y2="38" stroke="#1A1A18" stroke-width="8" stroke-linecap="round"/>
-          <line x1="185" y1="38" x2="238" y2="200" stroke="#1A1A18" stroke-width="8" stroke-linecap="round"/>
-          <circle cx="22" cy="200" r="19" fill="#1A1A18"/>
-          <circle cx="75" cy="38" r="19" fill="#1A1A18"/>
-          <circle cx="130" cy="192" r="19" fill="#1A1A18"/>
-          <circle cx="185" cy="38" r="19" fill="#1A1A18"/>
-          <circle cx="238" cy="200" r="19" fill="#1A1A18"/>
+        <svg class="diagnostico__cta-icon" viewBox="0 0 141.28 97.97" fill="none" aria-hidden="true">
+          <path fill="none" stroke="#1A1A18" stroke-width="3.48697" stroke-linecap="round" stroke-linejoin="round"
+                d="M 13.875,83.828 L 35.422,14.109 L 70.281,83.828 L 105.145,14.109 L 126.688,83.828"/>
+          <circle cx="13.875" cy="83.828" r="8.92" fill="#1A1A18"/>
+          <circle cx="35.422" cy="14.109" r="8.92" fill="#1A1A18"/>
+          <circle cx="70.281" cy="83.828" r="8.92" fill="#1A1A18"/>
+          <circle cx="105.145" cy="14.109" r="8.92" fill="#1A1A18"/>
+          <circle cx="126.688" cy="83.828" r="8.92" fill="#1A1A18"/>
         </svg>
         <p class="diagnostico__cta-title">Accede al diagnóstico</p>
         <p class="diagnostico__cta-desc">Responde nuestras preguntas y en menos de 24 horas un profesional te contactará con resultados y una propuesta personalizada.</p>
-        <a href="https://tally.so/r/RG8drP" target="_blank" rel="noopener noreferrer" class="btn-diagnostico">
+        <a href="https://tally.so/r/RG8drP"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-diagnostico"
+           onclick="window.open('https://tally.so/r/RG8drP','_blank'); return false;">
           Acceder al diagnóstico
-          <svg class="btn-arrow" viewBox="0 0 14 10" aria-hidden="true"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+          <svg class="btn-arrow" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
         </a>
       </div>
     </div>
@@ -2789,6 +3029,10 @@ footer {
      FINAL CTA (Sección 9)
      ═══════════════════════════════════════════════════════════════════════ -->
 <section class="cta-final" aria-label="Cierre">
+  <video class="cta-final__video" autoplay muted loop playsinline preload="none" aria-hidden="true">
+    <source src="15809948-uhd_3840_2160_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="cta-final__overlay" aria-hidden="true"></div>
   <div class="cta-final__grid-bg" aria-hidden="true"></div>
   <div class="container cta-final__inner">
 
@@ -2857,16 +3101,14 @@ footer {
 
       <div>
         <a href="#inicio" style="display:flex;align-items:center;gap:.9rem;margin-bottom:.5rem" aria-label="Método Pacioli">
-          <svg width="28" height="25" viewBox="0 0 260 230" fill="none" aria-hidden="true">
-            <line x1="22" y1="200" x2="75" y2="38" stroke="#B8A87A" stroke-width="9" stroke-linecap="round"/>
-            <line x1="75" y1="38" x2="130" y2="192" stroke="#B8A87A" stroke-width="9" stroke-linecap="round"/>
-            <line x1="130" y1="192" x2="185" y2="38" stroke="#B8A87A" stroke-width="9" stroke-linecap="round"/>
-            <line x1="185" y1="38" x2="238" y2="200" stroke="#B8A87A" stroke-width="9" stroke-linecap="round"/>
-            <circle cx="22" cy="200" r="18" fill="#B8A87A"/>
-            <circle cx="75" cy="38" r="18" fill="#B8A87A"/>
-            <circle cx="130" cy="192" r="18" fill="#B8A87A"/>
-            <circle cx="185" cy="38" r="18" fill="#B8A87A"/>
-            <circle cx="238" cy="200" r="18" fill="#B8A87A"/>
+          <svg width="28" height="25" viewBox="0 0 141.28 97.97" fill="none" aria-hidden="true">
+            <path fill="none" stroke="#B8A87A" stroke-width="3.48697" stroke-linecap="round" stroke-linejoin="round"
+                  d="M 13.875,83.828 L 35.422,14.109 L 70.281,83.828 L 105.145,14.109 L 126.688,83.828"/>
+            <circle cx="13.875" cy="83.828" r="8.92" fill="#B8A87A"/>
+            <circle cx="35.422" cy="14.109" r="8.92" fill="#B8A87A"/>
+            <circle cx="70.281" cy="83.828" r="8.92" fill="#B8A87A"/>
+            <circle cx="105.145" cy="14.109" r="8.92" fill="#B8A87A"/>
+            <circle cx="126.688" cy="83.828" r="8.92" fill="#B8A87A"/>
           </svg>
           <span style="font-family:var(--display);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--parchment)">Método Pacioli</span>
         </a>
@@ -2925,6 +3167,154 @@ footer {
      JAVASCRIPT
      ═══════════════════════════════════════════════════════════════════════ -->
 <script>
+
+/* ─── VENTAJAS MODAL DATA ─── */
+const vntData = {
+  doc: {
+    label: '01 · Gestión Documental',
+    title: 'Archivo Digital Organizado',
+    sub: 'Trazabilidad permanente de toda tu documentación',
+    desc: 'Tu documentación contable disponible cuando la necesites, sin carpetas físicas, sin archivos perdidos. Un modelo que protege tu información y te prepara ante cualquier fiscalización.',
+    items: [
+      'Historial documental completo respaldado en la nube',
+      'Envío mensual estructurado por correo corporativo',
+      'Acceso permanente con trazabilidad de cada operación',
+      'Plataformas digitales con encriptación y seguridad',
+      'Documentación lista ante cualquier fiscalización o auditoría'
+    ]
+  },
+  reunion: {
+    label: '02 · Acompañamiento Estratégico',
+    title: 'Reuniones Mensuales de Análisis',
+    sub: 'Tu información financiera interpretada, no solo entregada',
+    desc: 'Cada reunión es una sesión de trabajo orientada a decisiones reales. No solo te presentamos cifras: analizamos contigo, identificamos alertas y definimos próximos pasos.',
+    items: [
+      'Revisión de resultados del período con interpretación clara',
+      'Identificación de alertas y riesgos antes de que se materialicen',
+      'Planificación de acciones alineada a tus objetivos',
+      'Espacio para consultas contables, tributarias y laborales',
+      'Entrega de informe ejecutivo de cada sesión'
+    ]
+  },
+  cap: {
+    label: '03 · Cultura Financiera',
+    title: 'Capacitaciones Incluidas',
+    sub: 'Porque una empresa que entiende sus números decide mejor',
+    desc: 'La formación es parte del servicio, no un extra. Sesiones diseñadas para tu equipo administrativo y gerencial, adaptadas a tu realidad y sector.',
+    items: [
+      'Sesiones para equipo administrativo y gerencial',
+      'Contenido adaptado a tu sector y tipo de empresa',
+      'Materiales incluidos en cada capacitación',
+      'Temas: lectura de EE.FF., obligaciones tributarias, gestión de costos',
+      'Modalidad virtual, sin interrumpir tu operación diaria'
+    ]
+  },
+  prev: {
+    label: '04 · Prevención',
+    title: 'Informe de Contingencias',
+    sub: 'El mejor momento para resolver un riesgo tributario es antes de que exista',
+    desc: 'Identificamos exposiciones en tus declaraciones y registros antes de que lo hagan las entidades públicas competentes. Protegemos tu patrimonio y tu operación con anticipación.',
+    items: [
+      'Análisis preventivo tributario y laboral periódico',
+      'Identificación de exposiciones en declaraciones y registros',
+      'Recomendaciones concretas y accionables',
+      'Revisión de cambios normativos que puedan impactarte',
+      'Enfocado en proteger tu patrimonio y continuidad operativa'
+    ]
+  },
+  dash: {
+    label: '05 · Tecnología',
+    title: 'Dashboard Financiero',
+    sub: 'Tu realidad financiera visualizada, no solo reportada',
+    desc: 'Panel analítico con los indicadores clave de tu negocio, actualizado y accionable. Sin hojas de cálculo difíciles de leer. Disponible en condiciones preferenciales para clientes activos.',
+    items: [
+      'Indicadores clave (KPIs) de tu negocio actualizados',
+      'Estado de resultados, flujo de caja y posición financiera',
+      'Visualización clara sin necesidad de conocimientos técnicos',
+      'Desarrollado en alianza con especialistas en tecnología',
+      'Actualización periódica alineada a tu cierre contable'
+    ]
+  },
+  news: {
+    label: '06 · Actualización Continua',
+    title: 'Newsletter Técnico Mensual',
+    sub: 'Porque lo que no sabes sí puede afectarte',
+    desc: 'El entorno tributario cambia constantemente. Te mantenemos informado para que ningún cambio normativo te tome por sorpresa, en lenguaje claro y sin tecnicismos innecesarios.',
+    items: [
+      'Novedades de entidades reguladoras y autoridades públicas',
+      'Análisis de impacto para pequeñas y medianas empresas',
+      'Oportunidades tributarias y alertas del mes',
+      'Redactado en lenguaje claro, sin tecnicismos innecesarios',
+      'Exclusivo para clientes activos de Método Pacioli'
+    ]
+  },
+  digital: {
+    label: '07 · Modelo Digital',
+    title: 'Sin Papel. Sin Desplazamientos.',
+    sub: 'Eficiencia, sostenibilidad y compliance en un solo modelo',
+    desc: 'Todo ocurre en plataformas digitales seguras. Sin reuniones innecesarias, sin trámites físicos, sin tiempos muertos. Un modelo alineado con la forma en que trabajan los negocios modernos.',
+    items: [
+      'Gestión contable y tributaria 100% en la nube',
+      'Comunicación formal respaldada vía correo corporativo',
+      'Trazabilidad de cada operación y aprobación',
+      'Alineado con principios de sostenibilidad y compliance',
+      'Todo documentado, organizado y auditable en todo momento'
+    ]
+  },
+  alianza: {
+    label: '08 · Alianzas Estratégicas',
+    title: 'Tarifas Preferenciales en Ecosistema',
+    sub: 'Un ecosistema de aliados pensado para tu crecimiento',
+    desc: 'Como cliente activo accedes a condiciones exclusivas en servicios complementarios gestionados a través de nuestros socios tecnológicos y financieros seleccionados.',
+    items: [
+      'Facturación electrónica con tarifas preferenciales',
+      'Acceso a herramientas de gestión empresarial con descuento',
+      'Socios seleccionados bajo criterios de calidad y confiabilidad',
+      'Beneficios ampliados según plan contratado',
+      'Condiciones exclusivas no disponibles al público general'
+    ]
+  },
+  comunidad: {
+    label: '09 · Comunidad',
+    title: 'Red Método Pacioli',
+    sub: 'Construir empresa no debería ser un camino solitario',
+    desc: 'Ser cliente de Método Pacioli te conecta con un ecosistema de negocios activos. Una comunidad curada, no un grupo masivo: calidad sobre cantidad.',
+    items: [
+      'Pool de proveedores y clientes verificados para recomendación mutua',
+      'Eventos físicos de networking con empresarios y emprendedores',
+      'Acceso a cursos gratuitos sobre finanzas, gestión y liderazgo',
+      'Sorteos de libros de negocios, finanzas y estrategia',
+      'Descuentos exclusivos en servicios y productos seleccionados'
+    ]
+  }
+};
+
+function openVnt(key) {
+  const d = vntData[key];
+  if (!d) return;
+  document.getElementById('vnt-modal-label').textContent = d.label;
+  document.getElementById('vnt-modal-title').textContent = d.title;
+  document.getElementById('vnt-modal-sub').textContent = d.sub;
+  document.getElementById('vnt-modal-desc').textContent = d.desc;
+  const itemsEl = document.getElementById('vnt-modal-items');
+  itemsEl.innerHTML = d.items.map(item => `
+    <div class="modal-service-item">
+      <p>${item}</p>
+    </div>
+  `).join('');
+  document.getElementById('vnt-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVnt() {
+  document.getElementById('vnt-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleVntModalClick(e) {
+  if (e.target === document.getElementById('vnt-modal')) closeVnt();
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
    HERO LOGO ANIMATION
 ───────────────────────────────────────────────────────────────────────── */
@@ -3155,7 +3545,21 @@ document.querySelectorAll('a[href^="#"]:not(.btn-diagnostico)').forEach(function
   });
 });
 
-/* ── TALLY: cargar todos los iframes embed ── */
+/* ─────────────────────────────────────────────────────────────────────────
+   NEWSLETTER — open Tally popup
+───────────────────────────────────────────────────────────────────────── */
+function openNewsletterTally() {
+  var email = document.getElementById('newsletter-email').value.trim();
+  var url = 'https://tally.so/r/rj2BjL';
+  if (email) url += '?email=' + encodeURIComponent(email);
+  if (window.Tally) {
+    window.Tally.openPopup('rj2BjL', { emoji: { text: '👋', animation: 'wave' } });
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+
 (function() {
   var s = document.createElement('script');
   s.src = 'https://tally.so/widgets/embed.js';
