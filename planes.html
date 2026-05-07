@@ -177,7 +177,7 @@ hr.sep {
   transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1),
               box-shadow 0.22s ease,
               border-color 0.2s ease;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* shimmer pseudo-element */
@@ -815,6 +815,7 @@ hr.sep {
   <div class="ben-card" onclick="openM('news')"><span class="ben-arrow">↗</span><span class="ben-num">06</span><p class="ben-title">Newsletter técnico mensual</p><p class="ben-sub">Novedades normativas en lenguaje claro, sin sorpresas.</p></div>
   <div class="ben-card" onclick="openM('digital')"><span class="ben-arrow">↗</span><span class="ben-num">07</span><p class="ben-title">Modelo 100% digital</p><p class="ben-sub">Sin papel, sin desplazamientos. Todo en plataformas seguras.</p></div>
   <div class="ben-card" onclick="openM('alianza')"><span class="ben-arrow">↗</span><span class="ben-num">08</span><p class="ben-title">Alianzas estratégicas</p><p class="ben-sub">Tarifas preferenciales en facturación electrónica y más.</p></div>
+  <div class="ben-card" onclick="openM('acompanamiento')"><span class="ben-arrow">↗</span><span class="ben-num">09</span><p class="ben-title">Acompañamiento 100% personalizado</p><p class="ben-sub">Tu aliado estratégico presente cuando más lo necesitas.</p></div>
   <div class="ben-card ben-wide" onclick="openM('comunidad')">
     <span class="ben-arrow">↗</span><span class="ben-num">09</span>
     <p class="ben-title">Red Método Pacioli</p>
@@ -918,7 +919,8 @@ const BD = {
   news:     { label:'06 · Actualización', title:'Newsletter Técnico Mensual', sub:'Lo que no sabes sí puede afectarte', desc:'El entorno tributario cambia constantemente. Te mantenemos informado para que ningún cambio normativo te tome por sorpresa, en lenguaje claro.', items:['Novedades de entidades reguladoras y autoridades públicas','Análisis de impacto para pequeñas y medianas empresas','Oportunidades tributarias y alertas del mes','Redactado en lenguaje claro, sin tecnicismos','Exclusivo para clientes activos de Método Pacioli'] },
   digital:  { label:'07 · Modelo Digital', title:'Sin Papel. Sin Desplazamientos.', sub:'Eficiencia, sostenibilidad y compliance', desc:'Todo ocurre en plataformas digitales seguras. Sin reuniones innecesarias, sin trámites físicos. Un modelo alineado con la forma en que trabajan los negocios modernos.', items:['Gestión contable y tributaria 100% en la nube','Comunicación formal respaldada vía correo corporativo','Trazabilidad de cada operación y aprobación','Alineado con principios de sostenibilidad y compliance','Todo documentado, organizado y auditable'] },
   alianza:  { label:'08 · Alianzas', title:'Tarifas Preferenciales en Ecosistema', sub:'Un ecosistema de aliados para tu crecimiento', desc:'Como cliente activo accedes a condiciones exclusivas en servicios complementarios gestionados a través de nuestros socios tecnológicos y financieros.', items:['Facturación electrónica con tarifas preferenciales','Herramientas de gestión empresarial con descuento','Socios seleccionados por calidad y confiabilidad','Beneficios ampliados según plan contratado','Condiciones no disponibles al público general'] },
-  comunidad:{ label:'09 · Comunidad', title:'Red Método Pacioli', sub:'Construir empresa no debería ser un camino solitario', desc:'Ser cliente de Método Pacioli te conecta con un ecosistema de negocios activos. Una comunidad curada, no un grupo masivo: calidad sobre cantidad.', items:['Pool de proveedores y clientes verificados para recomendación mutua','Eventos físicos de networking con empresarios y emprendedores','Acceso a cursos gratuitos sobre finanzas, gestión y liderazgo','Sorteos de libros de negocios, finanzas y estrategia','Descuentos exclusivos en servicios y productos seleccionados'] }
+  acompanamiento: { label:'09 · Acompañamiento', title:'Acompañamiento 100% Personalizado', sub:'Tu aliado estratégico presente cuando más lo necesitas', desc:'Este es nuestro sello diferenciador. Más allá de las reuniones formales, estamos contigo en los momentos que definen tu empresa: desde la apertura de tu primera cuenta bancaria hasta la reunión con un proveedor clave. Un aliado estratégico poco convencional, flexible y con ímpetu genuino de crecer junto a ti.', items:['Acompañamiento presencial en gestiones clave: apertura de cuentas bancarias, trámites y más','Presencia en reuniones con proveedores o clientes cuando nos necesitas como respaldo estratégico','Guía completa en el proceso de constitución de empresa, de la mano en cada paso','Trato directo con Ashley Zea, CPC — sin intermediarios en los momentos que importan','Flexibilidad real adaptada a tu realidad, sector y ritmo de crecimiento','Disponibilidad genuina — no solo en horario de oficina ni detrás de una pantalla'] },
+  comunidad:{ label:'10 · Comunidad', title:'Red Método Pacioli', sub:'Construir empresa no debería ser un camino solitario', desc:'Ser cliente de Método Pacioli te conecta con un ecosistema de negocios activos. Una comunidad curada, no un grupo masivo: calidad sobre cantidad.', items:['Pool de proveedores y clientes verificados para recomendación mutua','Eventos físicos de networking con empresarios y emprendedores','Acceso a cursos gratuitos sobre finanzas, gestión y liderazgo','Sorteos de libros de negocios, finanzas y estrategia','Descuentos exclusivos en servicios y productos seleccionados'] }
 };
 
 /* ══════════ CONDITION DATA ══════════ */
@@ -926,12 +928,11 @@ const CD = {
   digital: {
     label: 'Cómo operamos',
     title: 'Modelo 100% digital',
-    desc: 'Operamos íntegramente en entornos digitales. No gestionamos documentos físicos, no recibimos visitas presenciales para trámites, y toda comunicación formal debe realizarse por los canales designados.',
+    desc: 'Operamos íntegramente en entornos digitales. Procuramos no manejar documentos físicos y mantenerlos siempre actualizados en la nube. Asimismo, a fin de hacer más eficiente la comunicación, todas nuestras gestiones, consultas e información en general son derivadas por el canal formal designado: el correo corporativo.',
     points: [
-      'Toda la documentación contable se gestiona en plataformas digitales seguras y trazables.',
-      'La comunicación formal con Método Pacioli se realiza exclusivamente vía correo corporativo. Los mensajes por WhatsApp o redes sociales no constituyen instrucción formal.',
       'Tus documentos están disponibles en la nube en todo momento — sin depender de nuestra oficina ni de horarios físicos.',
-      'Este modelo nos permite reducir tiempos, eliminar errores de transcripción y mantener un historial auditado de cada operación.'
+      'Este modelo nos permite reducir tiempos, eliminar errores de transcripción y mantener un historial auditado de cada operación.',
+      'Además de ser sostenible en el tiempo, es un modelo alineado con las mejores prácticas de compliance y seguridad de la información.'
     ]
   },
   pago: {
@@ -941,30 +942,27 @@ const CD = {
     points: [
       'El servicio mensual se factura y debe abonarse en los primeros días del mes correspondiente.',
       'La Declaración Jurada Anual (DDJJ) se factura por separado en el mes de marzo, dado que implica trabajo adicional y específico.',
-      'Ante mora en el pago, Método Pacioli puede suspender la entrega de reportes o declaraciones hasta regularizar la situación.',
-      'Se emite comprobante de pago por cada transacción — cumplimos con todas las obligaciones tributarias propias.'
+      'Se emite comprobante de pago por cada transacción y debe ser bancarizada a nuestras cuentas jurídicas — cumplimos con todas las obligaciones tributarias propias.'
     ]
   },
   info: {
     label: 'Tu responsabilidad',
     title: 'Información completa y oportuna',
-    desc: 'La calidad de nuestro trabajo depende directamente de la información que recibimos. No podemos construir sobre datos incompletos, ni responder por consecuencias derivadas de información que no nos fue entregada.',
+    desc: 'La calidad de nuestro trabajo depende directamente de la información que recibimos. No podemos construir sobre datos incompletos.',
     points: [
-      'Toda la documentación del período (facturas, boletas, planillas, extractos bancarios) debe entregarse antes del cierre establecido.',
-      'Método Pacioli no asume responsabilidad por multas, moras o contingencias generadas por información entregada fuera de plazo o con errores.',
-      'Si no contamos con información completa al momento de declarar, procederemos con lo disponible e informaremos las diferencias — la rectificatoria tendrá costo adicional.',
-      'Te enviaremos recordatorios periódicos sobre los documentos pendientes para facilitar el cumplimiento.'
+      'Toda la documentación del período (facturas, boletas, planillas, extractos bancarios y cualquier otra relevante) debe entregarse antes del cierre establecido.',
+      'Si no contamos con información completa al momento de declarar, procederemos con lo disponible e informaremos las diferencias. Toda contingencia generada por falta de envío de información adecuada y a tiempo es eximida de responsabilidad de Método Pacioli.',
+      'Te enviaremos recordatorios periódicos sobre los documentos pendientes para facilitar el cumplimiento. Por favor, mantente atento a los comunicados y correos que te enviamos.'
     ]
   },
   alcance: {
     label: 'Qué incluye el servicio',
     title: 'Alcance del servicio',
-    desc: 'Somos una firma contable, tributaria y laboral. Nuestro rol es mantener tu empresa en orden frente a las obligaciones correspondientes. Hay áreas que, por su naturaleza, requieren otros profesionales.',
+    desc: 'Somos una firma contable, tributaria y laboral. Nuestro rol es mantener tu empresa en orden frente a las obligaciones correspondientes.',
     points: [
       'El servicio incluye contabilidad completa, gestión tributaria y administración de planilla.',
-      'No prestamos asesoría legal ni representación judicial. Para litigios o contratos complejos, te recomendaremos estudios de abogados de confianza.',
-      'Las fiscalizaciones de períodos anteriores a la contratación del servicio se cotizan aparte, pues implican revisión de información que no gestionamos.',
-      'Cualquier ampliación del alcance (nuevas unidades de negocio, estructuras societarias adicionales, etc.) se coordinará y cotizará previamente.'
+      'No incluye asesoría legal ni representación judicial. Las fiscalizaciones de períodos anteriores a la contratación del servicio se cotizan aparte.',
+      'Cualquier ampliación del alcance (nuevas unidades de negocio, estructuras societarias adicionales, mayor movimiento, etc.) se coordinará y cotizará previamente.'
     ]
   },
   adicional: {
@@ -984,9 +982,9 @@ const CD = {
     desc: 'La información de tu empresa es tratada con el más alto estándar de reserva profesional. Nunca compartimos datos de clientes con terceros, y nuestros procesos internos están diseñados para proteger tu privacidad.',
     points: [
       'Todo el equipo de Método Pacioli está sujeto a acuerdos de confidencialidad internos.',
-      'No compartimos información de clientes con ningún tercero, salvo requerimiento expreso de una autoridad competente con orden formal.',
+      'No compartimos información de clientes con ningún tercero.',
       'Tus datos financieros, estratégicos y operativos permanecen exclusivamente en los sistemas internos de Método Pacioli.',
-      'Al finalizar la relación contractual, puedes solicitar la devolución o eliminación de tu información según lo acordado.'
+      'Al finalizar la relación contractual, se realiza el proceso de devolución y eliminación de tu información según contrato.'
     ]
   }
 };

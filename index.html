@@ -1658,7 +1658,7 @@ footer {
   <!-- Right: black with animated logo -->
   <div class="hero__right">
     <video class="hero__video-bg" autoplay muted loop playsinline preload="none" aria-hidden="true">
-      <source src="17031007-hd_1080_1920_25fps.mp4" type="video/mp4">
+      <source src="15809929-uhd_3840_2160_25fps.mp4" type="video/mp4">
     </video>
     <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
@@ -2702,10 +2702,25 @@ footer {
         <span class="vnt-card__cta">Ver detalle →</span>
       </div>
 
-      <!-- 9 — wide card: Comunidad -->
-      <div class="vnt-card vnt-card--wide reveal reveal-d2" onclick="openVnt('comunidad')">
+      <!-- 9 — Acompañamiento personalizado -->
+      <div class="vnt-card reveal reveal-d1" onclick="openVnt('acompanamiento')">
         <div class="vnt-card__accent"></div>
         <div class="vnt-card__num">09</div>
+        <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="16" cy="14" r="5" stroke="#B8A87A" stroke-width="1.1"/>
+          <path d="M8 32c0-5 3.6-9 8-9s8 4 8 9" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M28 20l6 6-6 6" stroke="#B8A87A" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+          <path d="M34 26H24" stroke="#B8A87A" stroke-width="1" stroke-linecap="round" opacity=".4"/>
+        </svg>
+        <h3 class="vnt-card__title">Acompañamiento 100% personalizado</h3>
+        <p class="vnt-card__desc">Tu aliado estratégico presente cuando más lo necesitas — más allá de las reuniones formales.</p>
+        <span class="vnt-card__cta">Ver detalle →</span>
+      </div>
+
+      <!-- 10 — wide card: Comunidad -->
+      <div class="vnt-card vnt-card--wide reveal reveal-d2" onclick="openVnt('comunidad')">
+        <div class="vnt-card__accent"></div>
+        <div class="vnt-card__num">10</div>
         <svg class="vnt-card__icon" viewBox="0 0 44 44" fill="none" aria-hidden="true">
           <circle cx="16" cy="16" r="6" stroke="#B8A87A" stroke-width="1.1"/>
           <circle cx="28" cy="16" r="6" stroke="#B8A87A" stroke-width="1.1"/>
@@ -3272,6 +3287,20 @@ const vntData = {
       'Socios seleccionados bajo criterios de calidad y confiabilidad',
       'Beneficios ampliados según plan contratado',
       'Condiciones exclusivas no disponibles al público general'
+    ]
+  },
+  acompanamiento: {
+    label: '09 · Acompañamiento',
+    title: 'Acompañamiento 100% Personalizado',
+    sub: 'Tu aliado estratégico presente cuando más lo necesitas',
+    desc: 'Este es nuestro sello diferenciador. Más allá de las reuniones formales, estamos contigo en los momentos que definen tu empresa: desde la apertura de tu primera cuenta bancaria hasta la reunión con un proveedor clave. Somos el aliado estratégico poco convencional, flexible y con ímpetu genuino de crecer junto a ti.',
+    items: [
+      'Acompañamiento presencial en gestiones clave: apertura de cuentas bancarias, trámites institucionales y más',
+      'Presencia en reuniones con proveedores o clientes cuando nos necesitas como respaldo estratégico',
+      'Guía completa en el proceso de constitución de empresa, de la mano en cada paso',
+      'Disponibilidad real — no solo en horario de oficina ni detrás de una pantalla',
+      'Trato directo con Ashley Zea, CPC — sin intermediarios en los momentos que importan',
+      'Flexibilidad y adaptación genuina a tu realidad, sector y ritmo de crecimiento'
     ]
   },
   comunidad: {
