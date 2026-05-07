@@ -1812,7 +1812,7 @@ footer {
     <div class="services__header">
       <div class="reveal">
         <span class="label-text" style="margin-bottom:1rem">Qué hacemos</span>
-        <h2 class="section-title" style="color:#F5F0E8;">Servicios diseñados<br>para tu negocio</h2>
+        <h2 class="section-title" style="color:#F5F0E8;">Servicios diseñados<br>para cada necesidad</h2>
         <div class="gold-rule"></div>
         <!-- New subtitle as requested -->
         <span class="services__subtitle">Soluciones accesibles</span>
@@ -1903,6 +1903,40 @@ footer {
         <h3 class="svc-card__title">Servicios especializados</h3>
         <p class="svc-card__subtitle">Alta complejidad, alta precisión</p>
         <button class="svc-card__more-btn" onclick="openModal('modal-svc-6')" aria-haspopup="dialog">Ver más detalle</button>
+      </div>
+
+      <!-- 7. Personas Naturales -->
+      <div class="svc-card reveal reveal-d1" style="border-top: 2px solid rgba(184,168,122,.25); grid-column: 1 / -1;">
+        <p class="svc-card__num">07</p>
+        <svg class="svc-card__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="13" r="6" stroke="#8C7A52" stroke-width="1.1"/>
+          <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#8C7A52" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M27 20l3 3-3 3" stroke="#8C7A52" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+          <path d="M30 23h-6" stroke="#8C7A52" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <h3 class="svc-card__title">Personas naturales</h3>
+        <p class="svc-card__subtitle">Con o sin negocio — tus rentas, en orden</p>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+          <div>
+            <p style="font-family:var(--display);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Con negocio (RUS)</p>
+            <ul class="svc-card__items">
+              <li class="svc-card__item">Servicio de emisión de comprobantes</li>
+              <li class="svc-card__item">Declaraciones del impuesto a la renta</li>
+              <li class="svc-card__item">Estrategia tributaria y capacitación</li>
+              <li class="svc-card__item">Acompañamiento constante</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:var(--display);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Sin negocio (4ta y 5ta cat.)</p>
+            <ul class="svc-card__items">
+              <li class="svc-card__item">Deducciones permitidas</li>
+              <li class="svc-card__item">Proceso de devoluciones y fiscalizaciones</li>
+              <li class="svc-card__item">Cumplimiento financiero, laboral y tributario en 1</li>
+              <li class="svc-card__item">Acompañamiento constante</li>
+            </ul>
+          </div>
+        </div>
+        <button class="svc-card__more-btn" onclick="openModal('modal-svc-7')" aria-haspopup="dialog">Ver más detalle</button>
       </div>
 
     </div>
@@ -2113,6 +2147,57 @@ footer {
       <div class="modal-service-item">
         <h4>e. Saldo a favor del exportador (SFE)</h4>
         <p>Solicitud de compensación o devolución del IGV a favor del exportador ante la autoridad tributaria, con preparación del expediente completo, validación de documentos y seguimiento hasta la resolución del caso.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7: Personas Naturales -->
+<div class="modal-overlay" id="modal-svc-7" role="dialog" aria-modal="true" aria-labelledby="modal-svc-7-title" onclick="handleModalClick(event, 'modal-svc-7')">
+  <div class="modal-box">
+    <div class="modal-box__header">
+      <button class="modal-box__close" onclick="closeModal('modal-svc-7')" aria-label="Cerrar">×</button>
+      <span class="modal-box__label">Servicio 07</span>
+      <h3 class="modal-box__title" id="modal-svc-7-title">Personas Naturales</h3>
+      <p class="modal-box__subtitle">Con o sin negocio — tus rentas, en orden.</p>
+    </div>
+    <div class="modal-box__body">
+      <p class="modal-box__desc">No solo las empresas necesitan un aliado contable y tributario. Las personas naturales — emprendedores bajo RUS, profesionales independientes con rentas de cuarta categoría o trabajadores con rentas de quinta — también enfrentan obligaciones con SUNAT que pueden gestionarse de forma inteligente para ahorrar, cumplir y tranquilizarse.</p>
+
+      <span class="modal-box__services-label" style="margin-top:1.5rem">Para personas con negocio (Régimen RUS)</span>
+      <div class="modal-service-item">
+        <h4>a. Servicio de emisión de comprobantes</h4>
+        <p>Asesoría y gestión para la emisión de boletas y comprobantes de pago válidos ante SUNAT según el régimen RUS, con configuración del sistema de facturación electrónica o gestión manual según corresponda.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>b. Declaraciones del impuesto a la renta</h4>
+        <p>Preparación y presentación oportuna de las declaraciones mensuales y anuales del Impuesto a la Renta bajo el Régimen Único Simplificado, evitando multas e intereses por presentaciones tardías.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>c. Estrategia tributaria y capacitación</h4>
+        <p>Orientación personalizada para que conozcas tus obligaciones y aproveches las ventajas del régimen. Te enseñamos a leer tus obligaciones tributarias y tomar decisiones informadas sobre el crecimiento de tu negocio.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>d. Acompañamiento constante</h4>
+        <p>Canal directo para consultas, alertas de vencimientos y revisión de notificaciones de SUNAT. No estarás solo ante la autoridad tributaria — resolvemos contigo cada situación que se presente.</p>
+      </div>
+
+      <span class="modal-box__services-label" style="margin-top:1.5rem">Para personas sin negocio (4ta y 5ta categoría)</span>
+      <div class="modal-service-item">
+        <h4>a. Deducciones permitidas</h4>
+        <p>Identificación y aplicación de todas las deducciones legalmente permitidas — arrendamiento, médicos, educación, entre otros — para reducir la base imponible de tu declaración anual y pagar solo lo justo.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>b. Proceso de devoluciones y fiscalizaciones</h4>
+        <p>Gestión completa de solicitudes de devolución de pagos en exceso ante SUNAT, así como acompañamiento y defensa técnica ante cualquier proceso de fiscalización o esquela de la autoridad.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>c. Cumplimiento financiero, laboral y tributario en 1</h4>
+        <p>Un solo servicio que integra el orden de tus rentas, tus obligaciones ante SUNAT y, si aplicara, tus compromisos laborales y financieros personales — para que tengas claridad total sin acudir a múltiples especialistas.</p>
+      </div>
+      <div class="modal-service-item">
+        <h4>d. Acompañamiento constante</h4>
+        <p>Acceso a un profesional disponible para consultas, recordatorios de vencimientos y revisión de comunicaciones de SUNAT. Porque tu tranquilidad tributaria no debería depender de recordar fechas por tu cuenta.</p>
       </div>
     </div>
   </div>

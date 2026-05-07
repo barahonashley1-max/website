@@ -21,6 +21,15 @@
   --featured:  #2c2b27;
   --radius:    10px;
   --radius-sm: 6px;
+
+  /* Personal Pro palette */
+  --pp-bg:     #1e2a3a;
+  --pp-border: #2e4060;
+  --pp-accent: #6b9fd4;
+  --pp-accent-l: rgba(107,159,212,0.15);
+  --pp-text:   #dce8f5;
+  --pp-text2:  rgba(220,232,245,0.6);
+  --pp-badge:  #6b9fd4;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -206,6 +215,32 @@ hr.sep {
 .plan-card.featured:hover {
   border-color: var(--gold);
   box-shadow: 0 14px 38px rgba(154,123,46,0.28);
+}
+
+/* Personal Pro card */
+.plan-card.personal-pro {
+  background: var(--pp-bg);
+  border: 1.5px solid var(--pp-border);
+}
+.plan-card.personal-pro:hover {
+  border-color: var(--pp-accent);
+  box-shadow: 0 14px 38px rgba(107,159,212,0.22);
+}
+.plan-card.personal-pro::before {
+  background: linear-gradient(135deg, transparent 40%, rgba(107,159,212,0.09) 60%, transparent 80%);
+}
+.plan-card.personal-pro .plan-name { color: var(--pp-text); }
+.plan-card.personal-pro .plan-desc { color: var(--pp-text2); }
+.plan-card.personal-pro .plan-rule { border-color: rgba(255,255,255,0.08); }
+.plan-card.personal-pro .plan-includes { color: var(--pp-text2); }
+.plan-card.personal-pro .plan-includes strong { color: var(--pp-text); }
+.plan-card.personal-pro .plan-cta-hint { color: var(--pp-accent); }
+.plan-card.personal-pro .plan-badge {
+  background: var(--pp-badge);
+  color: #0d1a2b;
+}
+.plan-card.personal-pro .ripple {
+  background: rgba(107,159,212,0.18);
 }
 
 /* click ripple */
@@ -756,7 +791,7 @@ hr.sep {
 <!-- ═══════════════════════════════ -->
 <!-- 2. PLANES                       -->
 <!-- ═══════════════════════════════ -->
-<div class="eyebrow">Planes de servicio · Contable · Tributario · Laboral</div>
+<div class="eyebrow">Planes de servicio · Contable · Tributario · Laboral · Personal</div>
 <h2>Elige tu plan</h2>
 <p class="lead">Servicio integral por defecto. Si necesitas un módulo específico, lo conversamos en la consultoría inicial.</p>
 
@@ -793,9 +828,21 @@ hr.sep {
     </p>
   </div>
 
+  <div class="plan-card personal-pro" onclick="openPlan('Personal Pro', event)">
+    <span class="plan-badge">Solo personas naturales</span>
+    <span class="plan-cta-hint">Clic para más info →</span>
+    <p class="plan-name">Personal Pro</p>
+    <p class="plan-desc">"Tu estrategia tributaria personal, en manos de especialistas. Para dependientes e independientes que quieren pagar lo justo y nunca ser sorprendidos."</p>
+    <hr class="plan-rule">
+    <p class="plan-includes">
+      Estrategia tributaria anual · Planificación de ingresos · <strong>Emisión de recibos por honorarios</strong> · Suspensión de retenciones · Declaración Jurada Anual del Impuesto a la Renta · Deducciones permitidas · Gestión de devoluciones y pagos · Guías y capacitación tributaria · <strong>Informe anual de ingresos e impuestos</strong> · Acompañamiento permanente
+    </p>
+    <p style="font-size:11.5px; color:var(--pp-accent); margin-top:10px; line-height:1.55; padding-bottom:1.2rem;">* Incluye también contribuyentes del <strong style="color:var(--pp-text);">Nuevo RUS</strong>.</p>
+  </div>
+
 </div>
 
-<p class="plan-note">Los tres planes incluyen contabilidad, tributación y gestión laboral. Módulos individuales disponibles bajo consulta. Cotización personalizada al finalizar el diagnóstico.</p>
+<p class="plan-note">Los planes Esencial, Estratégico y Premium están orientados a empresas y negocios. El plan Personal Pro es exclusivo para personas naturales dependientes o independientes. Cotización personalizada al finalizar el diagnóstico.</p>
 
 <hr class="sep">
 
