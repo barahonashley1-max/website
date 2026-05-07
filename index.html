@@ -223,6 +223,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   color: var(--ink);
   line-height: 1.2;
+  font-weight: 700;
 }
 .nav__logo-text em {
   display: block;
@@ -246,6 +247,7 @@ ul { list-style: none; }
   position: relative;
   padding-bottom: 2px;
   white-space: nowrap;
+  font-weight: 700;
 }
 .nav__links a::after {
   content: '';
@@ -269,6 +271,7 @@ ul { list-style: none; }
   color: var(--parchment);
   border: 1px solid var(--ink);
   transition: background .25s, color .25s, transform .2s;
+  font-weight: 700;
 }
 .nav__cta:hover { background: var(--gold-d); border-color: var(--gold-d); transform: translateY(-1px); }
 .nav__burger {
@@ -777,6 +780,53 @@ ul { list-style: none; }
   border-top: 1px solid rgba(184,168,122,.12);
   margin: 0; line-height: 1.4;
 }
+/* Lightbox overlay */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(10,10,10,.95);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s var(--ease-out);
+}
+.lightbox-overlay.open { opacity: 1; pointer-events: all; }
+.lightbox-img {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain;
+  transform: scale(.96);
+  transition: transform .35s var(--ease-out);
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+  border: 1px solid rgba(184,168,122,.15);
+}
+.lightbox-overlay.open .lightbox-img { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 1.2rem; right: 1.8rem;
+  font-family: var(--display); font-size: 1.2rem;
+  color: var(--gold); cursor: pointer; background: none; border: none;
+  line-height: 1; transition: color .2s, transform .2s;
+  z-index: 1;
+}
+.lightbox-close:hover { color: var(--parchment); transform: rotate(90deg); }
+.lightbox-caption {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--display); font-size: .48rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); opacity: .75;
+  white-space: nowrap;
+}
+.modal-gallery__img-wrap {
+  cursor: zoom-in;
+}
+.modal-gallery__img-wrap::after {
+  content: '⤢';
+  position: absolute; top: .5rem; right: .5rem;
+  font-size: .9rem; color: var(--gold);
+  opacity: 0; transition: opacity .25s;
+  line-height: 1; pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+.modal-gallery__img-wrap:hover::after { opacity: 1; }
+
 /* placeholder style kept for any future empty slots */
 .modal-gallery__placeholder {
   width: 100%; aspect-ratio: 4/3;
@@ -1574,7 +1624,7 @@ footer {
       <li><a href="#que-hacemos">Qué Hacemos</a></li>
       <li><a href="#nosotros">Quiénes Somos</a></li>
       <li><a href="#ventajas">Ventajas</a></li>
-      <li><a href="#comunidad">Comunidad</a></li>
+      <li><a href="#comunidad">Ecosistema</a></li>
       <li><a href="#recursos">Recursos</a></li>
       <li><a href="#contacto">Contáctanos</a></li>
     </ul>
@@ -1593,7 +1643,7 @@ footer {
   <a href="#que-hacemos"  onclick="closeMobile()">Qué Hacemos</a>
   <a href="#nosotros"     onclick="closeMobile()">Quiénes Somos</a>
   <a href="#ventajas"     onclick="closeMobile()">Ventajas</a>
-  <a href="#comunidad"    onclick="closeMobile()">Comunidad</a>
+  <a href="#comunidad"    onclick="closeMobile()">Ecosistema</a>
   <a href="#recursos"     onclick="closeMobile()">Recursos</a>
   <a href="#contacto"     onclick="closeMobile()">Contáctanos</a>
   <a href="https://tally.so/r/RG8drP" target="_blank" rel="noopener"  onclick="closeMobile()">Diagnóstico Gratis</a>
@@ -1692,7 +1742,7 @@ footer {
     <span class="ticker-item ticker-item--gold">Lima, Perú · 2016</span><span class="ticker-item ticker-sep">·</span>
     <span class="ticker-item">Modelo 100% digital</span><span class="ticker-item ticker-sep">·</span>
     <span class="ticker-item">Estructuras financieras</span><span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item ticker-item--gold">φ = 1.618</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item ticker-item--gold">φ = (1+√5)/2</span><span class="ticker-item ticker-sep">·</span>
     <!-- Duplicate for seamless loop -->
     <span class="ticker-item">Contabilidad estratégica</span><span class="ticker-item ticker-sep">·</span>
     <span class="ticker-item ticker-item--gold">Método Pacioli</span><span class="ticker-item ticker-sep">·</span>
@@ -1701,7 +1751,7 @@ footer {
     <span class="ticker-item ticker-item--gold">Lima, Perú · 2016</span><span class="ticker-item ticker-sep">·</span>
     <span class="ticker-item">Modelo 100% digital</span><span class="ticker-item ticker-sep">·</span>
     <span class="ticker-item">Estructuras financieras</span><span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item ticker-item--gold">φ = 1.618</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item ticker-item--gold">φ = (1+√5)/2</span><span class="ticker-item ticker-sep">·</span>
   </div>
 </div>
 
@@ -2316,7 +2366,7 @@ footer {
         </svg>
         <h3 class="insp-card__name">Leonardo da Vinci</h3>
         <p class="insp-card__role">Simetría & Número Áureo</p>
-        <p class="insp-card__desc">En <em>De Divina Proportione</em> (1509), da Vinci demostró que la belleza y la estabilidad obedecen φ = 1.618. Las proporciones del logo siguen esta ley geométrica.</p>
+        <p class="insp-card__desc">En <em>De Divina Proportione</em> (1509), da Vinci demostró que la belleza y la estabilidad obedecen φ = (1+√5)/2. Las proporciones del logo siguen esta ley geométrica.</p>
         <div class="insp-card__quote">
           <p>"La belleza es la suma de las partes en tal proporción que nada necesita añadirse ni sustraerse."</p>
         </div>
@@ -3575,6 +3625,39 @@ document.querySelectorAll('a[href^="#"]:not(.btn-diagnostico)').forEach(function
 });
 
 /* ─────────────────────────────────────────────────────────────────────────
+   LIGHTBOX — open individual gallery images
+───────────────────────────────────────────────────────────────────────── */
+function openLightbox(src, caption) {
+  var overlay = document.getElementById('lightbox');
+  var img     = document.getElementById('lightbox-img');
+  var cap     = document.getElementById('lightbox-caption');
+  img.src = src;
+  cap.textContent = caption || '';
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  var overlay = document.getElementById('lightbox');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Attach click to all gallery img-wraps
+document.querySelectorAll('.modal-gallery__img-wrap').forEach(function(wrap) {
+  wrap.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var img     = wrap.querySelector('.modal-gallery__img');
+    var caption = wrap.querySelector('.modal-gallery__caption');
+    if (img) openLightbox(img.src, caption ? caption.textContent.trim() : '');
+  });
+});
+
+/* ─────────────────────────────────────────────────────────────────────────
    NEWSLETTER — open Tally popup
 ───────────────────────────────────────────────────────────────────────── */
 function openNewsletterTally() {
@@ -3596,6 +3679,12 @@ function openNewsletterTally() {
   document.body.appendChild(s);
 })();
 </script>
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lightbox" class="lightbox-overlay" onclick="if(event.target===this)closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">×</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="Vista ampliada">
+  <span id="lightbox-caption" class="lightbox-caption"></span>
+</div>
 
 </body>
 </html>
