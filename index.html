@@ -1593,6 +1593,30 @@ footer {
 
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 </style>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     GOOGLE ANALYTICS 4
+     INSTRUCCIONES:
+     1. Ve a analytics.google.com y crea una cuenta para metodopacioli.com
+     2. Crea una "Propiedad GA4" → elige "Web" → ingresa tu dominio
+     3. Google te dará un ID con formato G-XXXXXXXXXX
+     4. Reemplaza "G-XXXXXXXXXX" en las dos líneas marcadas abajo
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5TJDZFBVG"></script> <!-- ← REEMPLAZA G-XXXXXXXXXX -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-G5TJDZFBVG'); // ← REEMPLAZA G-XXXXXXXXXX
+
+  /* ── Tracking de eventos personalizados ──
+     Estos eventos se registran automáticamente en GA4 bajo "Eventos":
+     - clic_diagnostico    → cada vez que alguien hace clic en "Diagnóstico gratis"
+     - clic_planes         → cada vez que alguien hace clic en ver planes
+     - clic_contacto       → clics al formulario de contacto embebido
+     - scroll_profundo     → cuando el usuario llega al 75% de la página
+  */
+</script>
 </head>
 <body>
 
@@ -3756,8 +3780,75 @@ function openNewsletterTally() {
   }
 }
 
-
+/* ─────────────────────────────────────────────────────────────────────────
+   GOOGLE ANALYTICS 4 — Event Tracking
+   Registra en GA4 cada clic importante sin intervención del usuario
+───────────────────────────────────────────────────────────────────────── */
 (function() {
+  // Espera a que GA4 esté listo
+  function trackEvent(name, params) {
+    if (typeof gtag === 'function') {
+      gtag('event', name, params || {});
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('a, button');
+    if (!el) return;
+    var href = el.getAttribute('href') || '';
+
+    // Clic en "Diagnóstico gratis" (todos los botones del nav, hero, footer, etc.)
+    if (href.includes('tally.so/r/RG8drP') || el.textContent.trim().toLowerCase().includes('diagnóstico')) {
+      trackEvent('clic_diagnostico', {
+        event_category: 'lead',
+        event_label: el.textContent.trim().substring(0, 50)
+      });
+    }
+
+    // Clic en Planes
+    if (href.includes('Planes') || el.textContent.trim().toLowerCase().includes('plan') || href.includes('planes')) {
+      trackEvent('clic_planes', {
+        event_category: 'interes',
+        event_label: el.textContent.trim().substring(0, 50)
+      });
+    }
+
+    // Clic en cualquier enlace al formulario de contacto embebido
+    if (href.includes('#contacto') || el.textContent.trim().toLowerCase().includes('contacto')) {
+      trackEvent('clic_contacto', {
+        event_category: 'lead',
+        event_label: el.textContent.trim().substring(0, 50)
+      });
+    }
+
+    // Clic en WhatsApp
+    if (href.includes('wa.me') || href.includes('whatsapp')) {
+      trackEvent('clic_whatsapp', {
+        event_category: 'lead',
+        event_label: 'WhatsApp directo'
+      });
+    }
+  });
+
+  // Scroll profundo: se registra cuando el usuario llega al 25%, 50%, 75% y 100% de la página
+  var scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+  window.addEventListener('scroll', function() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var pct = Math.round((scrollTop / docHeight) * 100);
+    [25, 50, 75, 100].forEach(function(m) {
+      if (pct >= m && !scrollMilestones[m]) {
+        scrollMilestones[m] = true;
+        trackEvent('scroll_profundo', { percent: m });
+      }
+    });
+  }, { passive: true });
+
+  // Tiempo en página: registra si el visitante lleva más de 30 y 60 segundos
+  setTimeout(function() { trackEvent('tiempo_en_pagina', { segundos: 30 }); }, 30000);
+  setTimeout(function() { trackEvent('tiempo_en_pagina', { segundos: 60 }); }, 60000);
+
+  // Tally: carga el embed
   var s = document.createElement('script');
   s.src = 'https://tally.so/widgets/embed.js';
   s.onload = function() { if (window.Tally) window.Tally.loadEmbeds(); };
