@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Archivo de comprobación de propiedad del dominio para Microsoft 365: colocar en la raíz del sitio web",
+  "Domain": "metodopacioli.com",
+  "Id": "37dc8765-2a39-43e2-9dcf-708d642ecdd0"
+}
