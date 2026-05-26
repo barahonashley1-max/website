@@ -726,6 +726,7 @@ footer {
     <!-- Compartir -->
     <div class="art-share">
       <span class="art-share__label">Compartir</span>
+      <button class="share-btn" onclick="shareFacebook()">Facebook</button>
       <button class="share-btn" onclick="shareWhatsApp()">WhatsApp</button>
       <button class="share-btn" onclick="shareLinkedIn()">LinkedIn</button>
       <button class="share-btn" onclick="copyLink()">Copiar enlace</button>
@@ -788,19 +789,25 @@ footer {
       <div>
         <span class="footer__col-title">Contacto</span>
         <ul class="footer__links">
-          <li><a href="mailto:metodopacioli@gmail.com">metodopacioli@gmail.com</a></li>
-          <li><a href="https://wa.me/51982505752" target="_blank" rel="noopener">+51 982 505 752</a></li>
-          <li><a href="https://www.instagram.com/metodopacioli" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/in/ashley-zbarahona" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:info@metodopacioli.com">info@metodopacioli.com</a></li>
+          <li><a href="https://wa.me/51986961074" target="_blank" rel="noopener">+51 986 961 074 (WhatsApp)</a></li>
+          <li><a href="https://www.metodopacioli.com" target="_blank" rel="noopener">www.metodopacioli.com</a></li>
+          <li><a href="https://www.instagram.com/metodopacioli/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61589685243478" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/company/metodo-pacioli/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@Metodopacioli" target="_blank" rel="noopener">YouTube</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__copy">© 2026 Método Pacioli · Todos los derechos reservados</p>
       <div class="footer__social">
-        <a href="https://www.instagram.com/metodopacioli" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.linkedin.com/in/ashley-zbarahona" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://wa.me/51982505752" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/metodopacioli/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61589685243478" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://wa.me/51986961074" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.linkedin.com/company/metodo-pacioli/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@Metodopacioli" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.metodopacioli.com" target="_blank" rel="noopener">Web</a>
       </div>
       <p class="footer__ruc">RUC 20615370275 · Lima, Perú</p>
     </div>
@@ -840,6 +847,9 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Share functions
+function shareFacebook() {
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+}
 function shareWhatsApp() {
   window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Método Pacioli y el Origen del Quipu — ' + window.location.href), '_blank');
 }
